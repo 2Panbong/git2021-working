@@ -1,0 +1,407 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Hi Melody', cursive;
+}
+
+body {
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    "header"
+    "nav"  
+    "banner"            
+    "content"
+    "sidebar"       
+    "footer"    
+  ;
+  background-image: url(./background3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: #6930c3;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.banner {  
+  width: 100%;
+  box-shadow: 1px 0.1px 10px black;
+  grid-area: banner;  
+}
+
+@media (min-width :576px) {
+  body {
+    display: grid;
+    width: 500px;
+    margin: 0 auto;      
+  }
+
+  header {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 1rem;
+  }
+
+ nav ul {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
+
+ nav {
+   padding: 0.5rem;
+ }
+
+ table {   
+   width: 60%;  
+   margin: 0 auto;
+ }
+
+ ol>li {
+   padding-left: 1rem;
+ }
+
+ aside img {
+   /* padding: 1rem; */
+   margin-right: 1rem;
+   margin-bottom: 1rem;
+ }
+ 
+}
+ 
+
+ @media (min-width : 768px) {
+   body {    
+     /* position: relative; */
+     width: 700px;
+     /* height: 100vh; */
+     margin: 0 auto;
+     grid-template-columns: 5fr 2fr;
+     grid-template-areas: 
+     "header    header"
+     "nav       nav"
+     "content   sidebar"
+     "content   sidebar"
+     "banner    banner"
+     "footer    footer"
+     ;
+   }
+
+   header {
+     margin-bottom: 0;
+     margin: 0;
+   }
+   nav{
+     display: flex;
+     margin: 0;     
+   }
+
+   nav ul {     
+     font-size: 1rem;
+     flex-direction: column;        
+     justify-content: space-around;
+   }
+   aside {
+     display: flex; 
+     flex-direction: column;
+     position: sticky;
+     height: fit-content;
+     top: 1rem;
+     z-index: 10;  
+     margin: 0;
+   }
+
+   aside img {
+     margin-right: 0;
+   }
+
+   .banner{
+     width: 100%;
+     height: 50%;
+   }
+ 
+ }
+ /*  Extra large 사이즈 입니다. */
+ @media (min-width:1200px) {
+   body {
+     width: 1200px;
+     margin: 0 auto;
+     grid-template-columns: 2fr 8fr 2fr;
+     grid-template-areas: 
+     "header  header  header"
+     "nav     banner  sidebar"
+     "nav     content sidebar"
+     "nav     content sidebar"
+     "footer  footer  footer"
+     ;
+   }
+
+   nav {    
+     display: flex;
+     flex-direction: row;
+     position: sticky;
+     top: 1rem; 
+     height: 5%;          
+   }   
+
+   .banner {            
+     width: 100%;
+     height: 100%;
+   } 
+   
+ }
+
+header { 
+  grid-area: header;
+}
+
+header h1 {
+  background-color: #aed9e0;
+  color: black;
+  text-align: center;
+  border-radius: 30%;
+  box-shadow: 1px 0.1px 10px black;
+  text-shadow: 2px 1px 0px white;
+}
+
+header h1::before {
+  content: "🍔";
+  padding-right: 0.5rem;
+}
+
+header h1::after {
+  content: "🍜";
+  padding-left: 0.5rem;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: 1px 1px 20px black;
+  background-color: #deecee; 
+  grid-area: nav;
+}
+
+nav ul {    
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  /* background-color: #deecee;  */
+  /* border: 1px solid #78afb8; */
+}
+
+nav li {
+  font-size: 1.7em;  
+  text-align: center;
+  text-shadow: 3px 2px 0px white;
+  /* border: 1px solid black; */  
+}
+
+/* nav li:first-child {
+  margin-left: 0;
+} */
+
+nav li:hover {
+  background-color: #aed9e0;
+}
+
+article {
+  box-shadow: 2px 2px 5px black;
+  background-color: #f7f4f3;
+  grid-area: content;
+  /* margin-right: 1rem;   */
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: green;
+}
+
+img:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+section img {  
+  display: block;
+  padding: 1rem;
+  margin: 0 auto;
+  box-shadow: 1px 1px 10px black;
+}
+
+section>h2 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.5rem;
+  box-shadow: 1px 1px 10px black;
+  font-weight: bold;  
+}
+
+section h2 {
+  background-color: #ede0d4;
+  color: #3d405b;
+  font-size: 1.5rem;
+  text-shadow: 3px 2px 0px white;
+}
+
+section>h2:hover {
+  background-color: #aed9e0;
+  font-size: 2em;
+}
+
+section h2+p {
+  color: #3d405b;
+}
+
+section>h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #f1ebe4;
+  box-shadow: 1px 1px 10px black;
+  text-shadow: 2px 1px 0px white;
+  font-weight: bold;
+}
+
+section>h3::before {
+  content: "👇";
+  margin-right: 10px;
+}
+
+section>p {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+ol {
+  /* margin: 0 auto; */
+  padding: 0;
+  /* padding-left: 200px;
+  padding-right: 200px; */
+}
+
+ol li {
+  list-style: none;
+  font-size: 1.05rem;
+  /* text-align: left; */
+  font-weight: bolder;
+  counter-increment: rint; 
+}
+
+ol li::first-letter {
+  font-size: 1.5rem;
+}
+
+ol li:last-child {
+  padding-bottom: 1rem;
+}
+
+ol li::before {
+  content: counter(rint) ". ";
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: rgb(176, 245, 72);
+  color: black;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  margin-right: 0.2rem;
+}
+
+aside {   
+  display: flex;    
+  grid-area: sidebar;  
+}
+
+aside img {  
+  box-shadow: 1px 1px 5px black; 
+  justify-content: space-around;
+}
+
+
+
+.rice::before {
+  content: "🍚";
+  padding-left: 0.5rem;
+}
+
+.rice::after {
+  content: "🍚";
+  padding-right: 0.5rem;
+}
+
+.beef::before {
+  content: "🍖";
+  padding-left: 0.5rem;
+}
+
+.beef::after {
+  content: "🍖";
+  padding-right: 0.5rem;
+}
+
+.noodle::before {
+  content: "🥓";
+  padding-left: 0.5rem;
+}
+
+.noodle::after {
+  content: "🥓";
+  padding-right: 0.5rem;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;  
+  box-shadow: 1px 1px 10px black;
+}
+
+thead tr th:nth-child(2n-1) {
+  background-color: #ede0d4;
+}
+
+thead tr th:nth-child(2n) {
+  background-color: #aed9e0;
+}
+
+table tbody td:nth-child(2n-1):hover {
+  background-color: #e2b388;
+  color: white;
+}
+
+table tfoot td:nth-child(2n-1):hover {
+  background-color: #e2b388;
+  color: white;
+}
+
+table tbody td:nth-child(2n):hover {
+  background-color: #8edbe7;
+  color: white;
+}
+
+table tfoot td:nth-child(2n):hover {
+  background-color: #8edbe7;
+  color: white;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+footer {
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 100%;
+  line-height: 3rem;
+  padding-right: 5px;
+  /* background-color: #f7f4f3;   */
+  text-align: center;
+  /* box-shadow: 2px 1px 5px black; */
+  color: red;
+  grid-area: footer;
+}

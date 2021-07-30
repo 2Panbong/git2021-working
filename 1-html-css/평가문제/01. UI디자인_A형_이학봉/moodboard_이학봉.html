@@ -1,0 +1,193 @@
+<html>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <style>
+    /* https://coolors.co/606c38-283618-fefae0-dda15e-bc6c25 */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Hi Melody", cursive;
+      width: 400px;
+      background-image: url("./img/background3.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position-x: center;
+      background-repeat: no-repeat;
+
+      display: grid;
+      gap: 0.5rem;
+      margin: 0 auto;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "header   header"
+        "banner   banner"
+        "nav      image"
+        "content  content"
+        "color    color"
+    }
+
+    p {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    header {
+      grid-area: header;
+    }
+
+    header>h1 {
+      background-color: #bc6c25;
+      color: #fefae0;
+      padding: 0.5rem;
+      margin: 0;
+      text-align: center;
+    }
+
+
+    .banner {
+      grid-area: banner;
+
+      height: 100px;
+      background-image: url("./img/rocket.jpg");
+
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      box-shadow: 0px 1px 5px #000000;
+    }
+
+    nav {
+      grid-area: nav;
+      background-color: #fefae0;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    nav>ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100px;
+      color: #283618;
+    }
+
+    .image {
+      grid-area: image;
+    }
+
+    article {
+      grid-area: content;
+      background-color: #fefae0;
+      padding: 0.5rem;
+    }
+
+    article>h2,
+    article>h3 {
+      color: #283618;
+    }
+
+    article>p {
+      color: #606c38;
+    }
+
+    .color-box {
+      grid-area: color;
+      display: flex;
+      height: 100px;
+    }
+
+    .color-box>div {
+      flex: 1 1 auto;
+    }
+
+    .color-box>div:nth-child(1) {
+      background-color: #6930c3;
+    }
+
+    .color-box>div:nth-child(2) {
+      background-color: #aed9e0;
+    }
+
+    .color-box>div:nth-child(3) {
+      background-color: #f7f4f3;
+    }
+
+    .color-box>div:nth-child(4) {
+      background-color: green;
+    }
+
+    .color-box>div:nth-child(5) {
+      background-color: #ede0d4;
+    }
+
+    .color-box>div:nth-child(6) {
+      background-color: #3d405b;
+    }
+
+    .color-box>div:nth-child(7) {
+      background-color: #f1ebe4;
+    }
+
+    .color-box>div:nth-child(8) {
+      background-color: #e2b388;
+    }
+
+    .color-box>div:nth-child(9) {
+      background-color: #8edbe7;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 텍스트 스타일(h1) -->
+  <header>
+    <h1>10분안에 완성하는 초간단 요리</h1>
+  </header>
+  <!-- 대표 이미지(배너이미지)-->
+  <div class="banner">
+  </div>
+  <!-- 대표 문구(네비게이션) -->
+  <nav>
+    <ul>
+      <li>신라면 볶음밥</li>
+      <li>5분 육포</li>
+      <li>달걀 마요 비빔면</li>
+    </ul>
+  </nav>
+  <!-- 대표 이미지(컨텐트이미지) -->
+  <div class="image">
+    <img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/05/b821d27beac209ca5180dd20761bc5bb1.jpg" width="100%">
+  </div>
+  <!-- 텍스트 스타일(h2, h3, p) -->
+  <article>
+    <h2 style="margin: 0; padding: 0;">이것은 H2 제목입니다.</h2>
+    <h3 style="margin: 0; padding: 0;">이것은 H3 제목입니다.</h3>
+    <p style="margin: 0; padding: 0;">이것은 내용입니다.</p>
+  </article>
+  <!-- 컬러 스타일 -->
+  <div class="color-box">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+</body>
+
+</html>
