@@ -1,0 +1,31 @@
+
+    body {
+      background-color: #F8D4BA;
+    }
+
+    header>h1 {
+      background-color: #541412;
+      color: #fff;
+    }
+
+    nav>ul {
+      background-color: #D69F3A;
+    }
+
+    table {
+      background-color: #C34F5A;
+    }
+
+
+    section>h3 {
+      background-color: #D69F3A;
+    }
+
+    table>tr>td {
+      color: #541412;
+    }
+
+    .delete-line {
+      color: white;
+    }
+ 

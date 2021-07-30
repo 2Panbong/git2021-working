@@ -1,0 +1,53 @@
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    p {
+      width: 250px;
+      height: 150px;
+      border: 3px solid black;
+    }
+
+    p:nth-child(1) {
+      /*요소(element)의 크기보다 컨텐츠가 클 때 숨김처림*/
+      /*overflow : 넘침 */
+      /* hidden: 숨김 */
+      overflow: hidden;
+    }
+
+    p:nth-child(2) {
+      overflow: scroll;
+    }
+
+    p:nth-child(3) {
+      overflow-y: scroll;
+    }
+
+    p:nth-child(4) {
+      overflow-y: auto;
+    }
+
+    p:nth-child(5) {
+      overflow: hidden;
+
+      /*컨텐츠가 내용 밖으로 넘어서면 말줄임표(...)*/
+      text-overflow: ellipsis;
+
+      /*빈 공간은 기본적으로  밑으로 내림*/
+      /*밑으로 안내림, 옆으로 이어짐*/
+      white-space: nowrap;
+      height: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis doloribus officia repudiandae, dolores blanditiis nobis quibusdam maxime quaerat ea tempora vel deserunt numquam ipsa nesciunt voluptates dignissimos, natus omnis illum?</p>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda voluptates doloribus totam doloremque explicabo maiores architecto vitae eveniet dolor quisquam repudiandae illo eaque mollitia praesentium, tenetur eius quas repellendus exercitationem!</p>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae, porro distinctio neque ipsam quo odio in. Modi neque sit ducimus aperiam natus. Illo, iure earum! Cupiditate dolor reprehenderit possimus nobis!</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat explicabo praesentium dolorum eligendi at. Blanditiis quibusdam culpa ducimus quos sunt, vitae, eaque enim facere totam labore iste, ipsam nihil optio?</p>
+  <p title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente minima corrupti eaque et quibusdam cupiditate inventore earum doloribus. Necessitatibus voluptate culpa itaque ea explicabo exercitationem atque facilis repudiandae numquam quia!">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente minima corrupti eaque et quibusdam cupiditate inventore earum doloribus. Necessitatibus voluptate culpa itaque ea explicabo exercitationem atque facilis repudiandae numquam quia!</p>
+</body>
+
+</html>
