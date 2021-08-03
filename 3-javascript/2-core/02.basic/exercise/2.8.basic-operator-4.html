@@ -2,6 +2,18 @@
 
 <body>
   <script>
+    //
+    console.log(Boolean("abc")); //true
+    console.log(Boolean(1)); //true
+    console.log(Boolean(Infinity)); // true;
+
+    //------------------------false 값으로 변환-----------
+    console.log(Boolean("")); //false, 빈 문자열
+    console.log(Boolean(0)); // falese, 숫자 0
+
+    console.log(Boolean(undefined));  //false
+    console.log(Boolean(null)); // false
+    console.log(Boolean(NaN)); // false
     let a = prompt("덧셈할 첫 번째 숫자를 입력해주세요.", 1);
     let b = prompt("덧셈할 두 번째 숫자를 입력해주세요.", 2);
 
