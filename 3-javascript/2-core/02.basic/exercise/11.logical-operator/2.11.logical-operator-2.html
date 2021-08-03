@@ -1,0 +1,19 @@
+<html>
+
+<body>
+  <script>
+    alert(alert(1) || 2 || alert(3));
+    // console.log(alert(1)); -> 화면에 띄우긴하지만 실행했을때의 결과값은 아무것도 없다.
+    //undefined이다
+    // 즉 undefined || 2 || undefined로 볼 수 있으므로 차례대로 보면 1,2 순서로 알림창으로 뜬다
+
+    // 1단계 : alert(alert(1) || 2 || alert(3));
+    // 2단계 : alert(alert(1)) // alert(1)
+    // 3단계 : alert(alert(1) || 2) // undefined || 2 ->
+    // 4단계 : alert(2 || alert(3)) // 2 || alert(3) -> 2
+    // 5단계 : alert(2)  // alert(2)
+    // 위는 선생님이 푼것 -> alert(1), alert(2)출력
+  </script>
+</body>
+
+</html>
