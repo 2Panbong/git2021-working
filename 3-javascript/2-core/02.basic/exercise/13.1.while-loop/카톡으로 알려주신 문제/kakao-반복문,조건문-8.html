@@ -1,0 +1,24 @@
+<html>
+
+<body>
+  <script>
+    // 1부터 20 미만의 정수 중에서 2 또는 3의 배수가 아닌 수의 총합을 구하시오
+
+    let sumA = 0; // 총합을 구할 변수
+    let sumB = 0;
+    for (let i = 1; i < 20; i++) { // 1부터 20미만의 정수 까지 돌림      
+      if ((i % 2) == 0 || (i % 3) == 0) { // 2또는 3의 배수인것
+        sumB += i;
+      }
+    }
+
+    for (let i = 1; i < 20; i++) {
+      sumA += i;
+    }
+    console.log(sumA - sumB);
+
+
+  </script>
+</body>
+
+</html>
