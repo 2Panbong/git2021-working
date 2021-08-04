@@ -10,6 +10,9 @@
 
     let greaterHundred = prompt('100보다 큰 숫자를 입력하세요!', 0);
     while (greaterHundred <= 100 && greaterHundred) {
+      // 만약 5라는 숫자가 들어갔다면 (true && 5) 가 되어서 실행이 됩니다.
+      // 만약 100보다 큰 101이라는 숫자가 들어갔다면 앞에것이 false가 되므로 while문은 실행되지 않습니다.
+      // 취소버튼 이거나 아무것도 입력하지않으면 undifined와 0이 되는데 이 둘은 false이므로 실행되지 않습니다.
       greaterHundred = prompt('100보다 큰 숫자를 입력하세요!', 0);
     }
     // null은 0이 되므로 false
