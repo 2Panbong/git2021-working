@@ -16,8 +16,9 @@
     //  0인 false를 찾았으므로 false가 되고 alert문을 실행하지 않습니다.    
 
     // 세번째 if문을 살펴보면 if (null || -1 && 1)인데 논리곱인 &&를 먼저 계산하므로
-    // if (null || -1) alert('third')가 됩니다.
-    // 즉 if (-1) 이라는 조건을 가진채 alert('third')가 실행됩니다.
+    // -1 && 1 에서 -1은 true이므로 뒤에걸 봐야하는데 뒤에가 1임
+    // if (null || 1) alert('third')가 됩니다.
+    // 즉 if (1) 이라는 조건을 가진채 alert('third')가 실행됩니다.
     // true 이므로 alert('third')가 실행됩니다
     // 결론은 첫번째 alert와 세번째 alert만 실행됩니다.
   </script>

@@ -1,0 +1,32 @@
+<html>
+
+<body>
+  <script>
+    let i = 0;
+    while (++i < 5) alert(i);
+    // 증감식이 앞에 오면 증감식을 먼저 실행합니다. 그리하여
+    // 1번째 while (1 < 5) alert(1)이 실행됩니다.
+    // 2번째 while (2 < 5) alert(2)이 실행됩니다.
+    // 3번째 while (3 < 5) alert(3)이 실행됩니다.
+    // 4번째 while (4 < 5) alert(4)이 실행됩니다.
+    // 5번째로는 5 <5 라는 while문의 조건식이 성립하지 않으므로 실행 되지 않습니다.
+    // 결론 alert(1), alert(2), alert(3), alert(4)
+
+
+    let i = 0;
+    while (i++ < 5) alert(i);
+    // 위와는 반대로 증감식이 뒤에 있기때문에 조건식을 실행한 뒤에 증감식이 적용됩니다. 그리하여
+    // 1번째 while(0 < 5) alert(0)이 실행됩니다.
+    // 2번째 증감식이 실행된상태이므로 while(1 < 5) 가 되어 alert(1)이 실행됩니다.
+    // 3번째 마찬가지로 증감식이 실행된 상태이므로 while(2 < 5) 가 되어 alert(2)가 실행됩니다.
+    // 4번째 while(3 < 5) alert(3)
+    // 5번째 while(4 < 5) alert(4)
+    // 6번째 while(5 < 5) 라는 식은 성립하지 않으므로 while문이 종료됩니다.
+    // 결론 alert(0), alert(1), alert(2), alert(3), alert(4)
+
+    // 즉, 위 두가지 예시는 서로 같은 값을 출력하지 않습니다.
+
+  </script>
+</body>
+
+</html>
