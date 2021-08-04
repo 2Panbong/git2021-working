@@ -1,0 +1,31 @@
+<html>
+
+<body>
+  <script>
+    // 아래 코드를 switch문으로 바꾸어라, switch문은 하나만 사용
+    let a = +prompt('a?', '');
+
+    if (a == 0) {
+      alert(0);
+      break;
+    }
+    if (a == 1) {
+      alert(1);
+    }
+
+    if (a == 2 || a == 3) {
+      alert('2,3');
+    }
+
+    //------------------------------------------------
+    switch (+prompt('a?', '')) {
+      case (a == 0): alert(0); break;
+
+      case (a == 1): alert(1); break;
+
+      case (a == 2 || a == 3): alert('2,3'); break;
+    }
+  </script>
+</body>
+
+</html>
