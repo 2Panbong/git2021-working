@@ -1,0 +1,29 @@
+<html>
+
+<body>
+  <script>
+    function checkAge(age) {
+      if (age > 18) {
+        return true;
+      } else {
+        // ...
+        return confirm('보호자의 동의를 받으셨나요?');
+      }
+    } // age가 18 미만 이라면 confirm('보호자의 동의를 받으셨나요?');가 실행됩니다.
+
+    //-------------------------------------------------
+    function checkAge(age) {
+      if (age > 18) {
+        return true;
+      }
+      // ...
+      return confirm('보호자의 동의를 받으셨나요?');
+    } // 위 코드에서 else문을 삭제했다면 프로그래밍의 작동 순서는
+    // 위에서 아래로 향하므로 checkAge라는 함수는 무조건 return confirm('보호자의 동의를 받으셨나요?');
+    // 을 반환하게 됩니다. age라는 매개변수의 값이 상관없이 해당 구문의 확인창이 뜨게됩니다.
+    // 인줄 알았는데 동일하게 동작한다고 합니다 ㅠㅠ else문을 쓰지 않아도 else문이 기본적으로 되는것 같습니다.
+
+  </script>
+</body>
+
+</html>
