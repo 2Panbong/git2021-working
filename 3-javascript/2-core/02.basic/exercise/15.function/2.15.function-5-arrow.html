@@ -1,0 +1,41 @@
+<html>
+
+<body>
+  <script>
+    // 아래 코드를 화살표 함수 (arrow function으로 변환 하자!)
+    function ask(question, yes, no) {
+      if (confirm(question)) yes()
+      else no();
+    }
+
+    ask(
+      "동의하십니까?",
+      function () { alert("동의하셨습니다."); },// 익명함수로 일회용으로 사용한것
+      function () { alert("취소 버튼을 누르셨습니다."); }
+    );
+
+    //-----------------------------------------
+    // let ask=(question, yes, no) => confirm(question) ? yes() : no(); 이거는 함수 선언식을 바꾼것
+
+    // ask("동의하십니까?",alert("동의하셨습니다."), alert("취소 버튼을 누르셨습니다.")); 이거는 아래를 줄인것 줄바꿈을 할수있음
+
+    function ask(question, yes, no) {
+      if (confirm(question)) yes()
+      else no();
+    }
+
+    // 문제에서는 함수 선언식이 아니라 함수 표현식을 화살표함수를 바꾸라고했으므로
+    // 위도 익명함수 이긴하지만 더 줄일 수 있다!
+    ask(
+      "동의하십니까?",
+      () => { alert("동의하셨습니다."); },
+      () => { alert("취소 버튼을 누르셨습니다."); }
+    );
+
+
+
+
+  </script>
+</body>
+
+</html>

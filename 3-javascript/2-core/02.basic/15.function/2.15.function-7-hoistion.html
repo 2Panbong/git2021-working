@@ -1,0 +1,27 @@
+<html>
+
+<body>
+  <script>
+    // Hoistion(끌어올리다)
+    // 뒤에 선언이 있고, 앞에서 사용을 하면 선언을 내부적으로 
+    // 허용범위 최상단으로 끌어 올려줌
+
+    sayHi("John"); // Hello, John    
+
+    sayHi("John"); // Hello, John
+
+    function sayHi(name) {
+      alert(`Hello, ${name}`);
+    }
+  </script>
+
+  <script>
+    sayHi("John"); // Hello, John
+
+    let sayHi = function (name) {  // (*) 마술은 일어나지 않습니다.
+      alert(`Hello, ${name}`);
+    };
+  </script>
+</body>
+
+</html>
