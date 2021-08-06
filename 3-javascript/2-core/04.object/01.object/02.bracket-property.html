@@ -1,0 +1,30 @@
+<html>
+
+<body>
+  <script>
+    // {} : brace(curly)
+    // [] : bracket
+    // <> : bracket(angle)
+
+    let user = {
+      name: "John",
+      age: 30,
+    };
+
+    let prop = prompt("사용 자의 어떤 정보를 얻고싶으신가요?", "name");
+    console.log(prop);
+
+    // if(prop == "name") { <-코드 못짜는 사람
+    //   alert(user.name);
+    // }else {
+    //   alert(user.age)
+    // }
+
+
+
+    //변수로 접근
+    alert(user[prop]); // John (프롬포트 창에 "name"을 입력한 경우)
+  </script>
+</body>
+
+</html>

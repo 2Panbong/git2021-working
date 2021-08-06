@@ -1,0 +1,35 @@
+<html>
+
+<body>
+  <script>
+    // 객체 obj의 프로퍼티 값이 숫자인 경우
+    // 그 값을 두 배 해주는 함수 multiplyNumeric(obj)을 만들어보세요.    
+    // 힌트 : type of 사용하면 숫자인지 확인할수있다!
+
+    function multiplyNumeric(a) { // 매개변수 a
+      for (let prop in a) {  //a라는 변수 안에 있는 것들을 prop이라는 변수에 담는다
+        if (typeof a[prop] == Number) { // 만약에 a의 값들이 숫자형이라면
+          a[prop] = a[prop] * 2 // 그 값들을 곱하기 2를 해준다
+        }
+      }
+    }
+
+    // 함수 호출 전
+    let menu = {
+      width: 200,
+      height: 300,
+      title: "My menu"
+    };
+
+    multiplyNumeric(menu);
+
+    // 함수 호출 후
+    menu = {
+      width: 400,
+      height: 600,
+      title: "My menu"
+    };
+  </script>
+</body>
+
+</html>

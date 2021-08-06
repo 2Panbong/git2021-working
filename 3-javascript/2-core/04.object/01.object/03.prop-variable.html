@@ -1,0 +1,35 @@
+<html>
+
+<body>
+  <script>
+    function makeUser(name, age) {
+      let phone = "010-";
+
+      // return {
+      //   name: name,
+      //   age: age,
+      //   // ...등등
+      // };
+
+      // let user = {};
+      // user.name = name; //위에 것과 독같은거
+      // user.age = age;
+
+      // return user;
+
+      //변수명과 속성명이 동일한 경우 속성명만 표기할 수 있음
+      return {
+        name,
+        age,
+        phone, //phone:phone,
+        // ...등등 // 속성명과 변수명이 같다면 이렇게 작성할 수 있음
+      };
+
+    }
+
+    let user = makeUser("John", 30);
+    alert(user.name); // John
+  </script>
+</body>
+
+</html>
