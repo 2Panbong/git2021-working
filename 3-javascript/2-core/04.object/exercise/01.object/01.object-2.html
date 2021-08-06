@@ -13,12 +13,25 @@
 
     // alert(isEmpty(schedule)); // false
 
+    // undefined : 할당이 안되어 있다는 뜻
+
     let schedule;
 
-    function isEmpty() {
-      if (schedule == false) {
+    function isEmpty(object) {
+      if (object == false) {
         return alert(true);
       } else { return alert(false); }
+    }
+
+    //-----------------쌤------------------
+    function isEmpty(obj) {
+      // 속성의 개수 만큼 반복
+      // 반복문이 실행된다면 속성이 있다는 얘기
+      for (let prop in obj) {
+        return false;
+      }
+      // 속성이 없다면 반복문은 스킵되고 true를 반환함
+      return true;
     }
 
   </script>

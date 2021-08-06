@@ -1,0 +1,21 @@
+<html>
+
+<body>
+  <script>
+    function makeUser() {
+      return {
+        name: "John",
+        ref: this
+      };
+    };
+
+    let user = makeUser();
+
+    alert(user.ref.name); // 결과가 어떻게 될까요?
+    // 에러가 납니다
+    // this값은 런타임에 따라 달리집니다
+    // 위의 함수에서 ref : this의 값은 참조하는 객체가 없으므로 undefined상태가 됩니다.
+  </script>
+</body>
+
+</html>

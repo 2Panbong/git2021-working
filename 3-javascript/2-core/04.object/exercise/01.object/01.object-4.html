@@ -12,6 +12,8 @@
     // 그 값을 변수 sum에 저장해주는 코드를 작성해보세요.sum엔 390이 저장되어야겠죠 ?
     //   주의 : salaries가 비어있다면 sum에 0이 저장되어야 합니다.
 
+    // 외부에 합살할 변수를 생성
+    // 반복문 내부에 만들면 반복문이 실행될 때마다 새로 초기화 됨
     let sum = 0;// 맨 처음에 sum에 0을 넣고 더할 변수!
     for (let prop in salaries) { // salaries의 것들을 prop이라는 변수에 다 때려박는다!
       sum += salaries[prop]; // sum = sum + salaries[prop] 라는 뜻 
