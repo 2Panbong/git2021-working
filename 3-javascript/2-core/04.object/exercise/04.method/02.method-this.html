@@ -10,6 +10,7 @@
     let calculator = {
       read() {
         this.a = Number(prompt('첫번째', '')); // 앞에 propmt값이 문자열이어서 숫자형으로 형변환을 해주었다.
+        // 숫자형으로 바꿔주지 않으면 sum()을 호출하면 문자형식으로 더해진다.
         this.b = Number(prompt('두번째', ''));
       },
       sum() {
@@ -24,6 +25,9 @@
     alert(calculator.sum());
     alert(calculator.mul());
   </script>
+
+  <!-- 변수명 앞에 let, var, const, this 지시자가 없다면 -->
+  <!-- // 전역객체의 전역 변수로 생성함 -->
 </body>
 
 </html>

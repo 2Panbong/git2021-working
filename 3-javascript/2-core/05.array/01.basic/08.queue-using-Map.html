@@ -1,0 +1,56 @@
+<html>
+
+<body>
+  <script>
+
+    // 맵(Map) : key-value 형태의 자료 구조, key를 문자말고 다른 것 가능
+    // 연관 배열(associative array)
+    let queue = new Map();
+    let head = 0; // 가장 앞쪽 key를 저장하는 변수
+    let tail = 0; // 가장 뒤쪽 key를 저장하는 변수
+
+    //Map 에 tail 값을 키로 요소(item)을 만듦
+    queue.set(tail++, "hong"); // 맵.set(키, 값)
+    console.log(queue);
+    queue.set(tail++, "john");
+    console.log(queue);
+    queue.set(tail++, "hodonaldng");
+    console.log(queue);
+    queue.set(tail++, "kim");
+    console.log(queue);
+    queue.set(tail++, "lee");
+    console.log(queue);
+
+
+    // head위치에서 조회하고 key 삭제
+    console.log(queue.get(head)); //map.get(key) 0, hong
+    queue.delete(head++);//0,  queue.delete(0);
+    console.log(queue);
+
+    console.log(queue.get(head));   //1 위쪽에서 있는 ++적용 john
+    queue.delete(head++); // 1  delete queue["1"]
+    console.log(queue);
+
+    console.log(queue.get(head)); // 2
+    queue.delete(head++); // 2
+    console.log(queue);
+
+    console.log(queue.get(head)); //3
+    queue.delete(head++); // 3
+    console.log(queue);
+
+    console.log(queue.get(head)); //4
+    queue.delete(head++); // 4
+    console.log(queue);
+
+    // 키 값에 따라서 정렬하지 않음, 추가한 순서대로만 만들어줌
+
+    // 큐 크기 구하기
+    console.log(queue.size);
+    // 우리는 대기열을 만들때 map을 쓰는 것을 추천합니다.
+    //linked list는 솔직히 억지라서 안쓰는게 나음
+
+  </script>
+</body>
+
+</html>

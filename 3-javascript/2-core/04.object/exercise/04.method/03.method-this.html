@@ -25,7 +25,11 @@
     ladder.showStep(); // 1
 
     // up, down, showStep을 수정하여 메서도 호출 체이닝이 가능하도록 하여보자    
-    ladder.up().up().down().showStep(); // 1
+    ladder
+      .up() // ladder.up()의 반환값이 ladder 객체 // 세로로 이렇게 줄바꿈을 해서 정리할 수도있음!
+      .up()
+      .down()
+      .showStep(); // 1
   </script>
 </body>
 
