@@ -2,6 +2,7 @@
 
 <body>
   <script>
+
     // 배열 컨텍스트에서 함수 호출하기
     // 밑의 코드를 실행하면 어떤 결과가 나올까?
     let arr = ["a", "b"]; // 인덱스번호는 0,1
@@ -9,6 +10,10 @@
     arr.push(function () { // 익명함수고 그 기능은 alert(this)
       alert(this);
     })  // 새로운 인덱스에 자기자신을 출력하는 함수를 넣음
+
+    // arr.push(()=> {
+    //   console.log(this);
+    // }) -> 이건 윈도우 객체가 나옴 
 
     arr[2](); //  arr[2]에 있는 함수를 호출한것
     // a, b, function() {alert(this)}가 출력이 됩니다.

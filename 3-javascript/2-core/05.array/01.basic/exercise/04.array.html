@@ -13,8 +13,66 @@
     // 주의: 숫자 0은 유효한 숫자이므로, 
     // 사용자가 0을 입력하더라도 질문이 멈추지 말아야 합니다.
 
+    // function sumInput() {
+
+    //   let numbers = [];
+
+    //   while (true) {
+
+    //     let value = prompt("숫자를 입력해 주세요.", 0);
+
+    //     // 입력받는 것을 정지해야 하는 경우
+    //     if (value === "" || value === null || !isFinite(value)) break;
+
+    //     numbers.push(+value);
+    //   }
+
+    //   let sum = 0;
+    //   for (let number of numbers) {
+    //     sum += number;
+    //   }
+    //   return sum;
+    // }
+
+    // alert(sumInput());
 
 
+
+    function sumInput() {
+      let arr = []; // 배열을 먼저 생성
+      while (true) {
+        let number = prompt('숫자입력하라', 0);
+        if (typeof number !== number || number === '' || number === "0") break;
+        arr.push(+number); // number의 값들을 숫자로 바꾸고 배열에 넣음.
+      }
+      let result = 0;
+      for (let sum of arr) {
+        result += sum;
+      } return alert(result);
+    }
+    sumInput();
+
+    //----구분-----------------------------
+    function sumInput() {
+      let arr = [];
+
+      while (true) {
+        let input = prompt("숫자를 입력해주세요");
+        // NaN, "", null 뜨면 반복문 나감  NaN 은 비교가 불가능합니다 isNaN(value)로 숫자로 변환하고 비교할수있음
+        // 입력받은 문자를 숫자로 변환했을때 NaN인지 체크
+        if (isNaN(+input) || input == "" | input == null) break;
+        break;
+
+        arr.push(+input);
+      }
+
+      let sum = 0;
+      for (let elm of arr) {
+        sum += elm;
+      }
+      return sum;
+    }
+    alert.log(sumInput());
   </script>
 </body>
 
