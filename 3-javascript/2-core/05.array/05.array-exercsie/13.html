@@ -1,0 +1,30 @@
+<html>
+  <body>
+    <script>
+      // Create keyed object from array
+      //  에를 들어서 id,이름,나이 를 받았다
+      // id를 키로 사용하고 배열 항목을 값으로 사용하여 개체를 만드는 함수 그룹 ById(arr)를 만듭니다.
+
+      let users = [
+        { id: "john", name: "John Smith", age: 20 },
+        { id: "ann", name: "Ann Smith", age: 24 },
+        { id: "pete", name: "Pete Peterson", age: 31 },
+      ];
+
+      let usersById = groupById(users);
+
+      /*
+// after the call we should have:
+
+usersById = {
+  john: {id: 'john', name: "John Smith", age: 20},
+  ann: {id: 'ann', name: "Ann Smith", age: 24},
+  pete: {id: 'pete', name: "Pete Peterson", age: 31},
+}
+*/
+      //     서버 데이터로 작업할 때 이러한 기능이 매우 편리합니다.
+      // 이 작업에서는 ID가 고유하다고 가정합니다. 동일한 ID를 가진 배열 항목이 두 개 없을 수 있습니다.
+      // 솔루션에서 array.reduce 메서드를 사용하십시오.
+    </script>
+  </body>
+</html>

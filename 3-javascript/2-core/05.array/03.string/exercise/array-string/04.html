@@ -5,10 +5,17 @@
 
       // 위와 같은 문자열에서 숫자만 뽑아내는 함수 extractCurrencyValue(str)를 작성해 봅시다
 
+      // function extractCurrencyValue(str) {
+      //   if (str.indexOf("$") != -1) {
+      //     delete str.indexOf("$");
+      //   }
+      // }
+
+      // 달러 표시를 찾고
+      // 문자열을 숫자로 바꾸어야함
+
       function extractCurrencyValue(str) {
-        if (str.indexOf("$") != -1) {
-          delete str.indexOf("$");
-        }
+        return +str.substr(1, str.length);
       }
 
       alert(extractCurrencyValue("$120") === 120); // true

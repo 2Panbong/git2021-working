@@ -7,9 +7,13 @@
 
       // 새로 작성하는 함수는 기존 배열 arr을 변경하면 안 되고, 반환되는 함수는 새로운 배열이어야 합니다.
 
+      // function filterRange(arr, a, b) {
+      //   return arr.filter((item) => a <= item && item <= b);
+      // }
+
       function filterRange(arr, a, b) {
-        return arr.filter((item) => a <= item && item <= b);
-      }
+        return arr.filter((item) => item >= a && item <= b);
+      } // find는 요소 하나만 반환해주기때문에 여러개를 찾으려면 filter를 써야한다
 
       let arr = [5, 3, 8, 1];
 

@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <script>
+      // 배열 복사본을 정리하라
+
+      // 문자열이 담긴 배열 arr을 복사한 다음 해당 배열을 정렬하라 이때 arr은 변경되면 안됨
+      // 함수 copySorted(arr)은 복사된 후 정렬된 배열을 반환해야함
+
+      function copySorted(arr) {
+        let copy = arr.slice(0); // 배열 arr의 요소를 다 copy에 복사를 함
+
+        return copy.sort((a, b) => a.localeCompare(b)); // 이거 개쩐다.
+      }
+
+      let arr = ["HTML", "JavaScript", "CSS"];
+
+      let sorted = copySorted(arr);
+
+      console.log(sorted);
+      console.log(arr);
+    </script>
+  </body>
+</html>

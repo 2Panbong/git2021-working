@@ -1,20 +1,26 @@
 <html>
+  <body>
+    <script>
+      // str에 'viagra’나 'XXX’라는 문자열이 있으면 true를 반환해주는 함수 checkSpam(str)을 만들어보세요.
+      // 해당 문자열이 없으면 false를 반환하면 됩니다.
+      // 대 소문가 구별없이 해당 단어를 걸어주어야 함
 
-<body>
-  <script>
-    // str에 'viagra’나 'XXX’라는 문자열이 있으면 true를 반환해주는 함수 checkSpam(str)을 만들어보세요. 
-    // 해당 문자열이 없으면 false를 반환하면 됩니다.
-    // 대 소문가 구별없이 해당 단어를 걸어주어야 함
+      // function checkSpam(str) {
+      //   let upStr = str.toUpperCase();
+      //   return upStr.includes('viagra') || upStr.includes('XXX');
+      // }
 
-    function checkSpam(str) {
-      let upStr = str.toUpperCase();
-      return upStr.includes('viagra') || upStr.includes('XXX');
-    }
+      function checkSpam(str) {
+        let lowerStr = str.toLowerCase();
+        // 대소문자 구별을 위해서 다 대문자로 바꾸어줌
+        return lowerStr.includes("viagra") || lowerStr.includes("xxx");
+        // includes는 문자열탐색후 있으면 true반환
+      } // 만약에 toUpper을 쓸려면 includes안의 문자열을 대문자로 바꾸어야한다.
+      // "VIAGRA" 이런식으로!
 
-    checkSpam('buy ViAgRA now') == true
-    checkSpam('free xxxxx') == true
-    checkSpam("innocent rabbit") == false
-  </script>
-</body>
-
+      checkSpam("buy ViAgRA now"); //== true;
+      checkSpam("free xxxxx"); //== true;
+      checkSpam("innocent rabbit"); //== false;
+    </script>
+  </body>
 </html>

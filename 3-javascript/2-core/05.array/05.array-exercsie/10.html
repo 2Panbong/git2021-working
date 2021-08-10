@@ -1,0 +1,29 @@
+<html>
+  <body>
+    <script>
+      // 배열 무작위로 섞기
+      //배열의 요소를 무작위로 섞어주는 함수 shuffle(array)를 작성해보세요
+      //shuffle을 여러번 실행시 정렬 순서가 달라야합니다.
+
+      let arr = [1, 2, 3];
+
+      function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+      }
+      // Math.random은 무작위로 나온다 난수 로또에도 쓸 수 있음
+      // 근데 답이 이게 아니네 뭐지 이건
+
+      shuffle(arr);
+      // arr = [3, 2, 1]
+
+      shuffle(arr);
+      // arr = [2, 1, 3]
+
+      shuffle(arr);
+      // arr = [3, 1, 2]
+      // ...
+
+      // 동일한 확률로 순열이 일어나야 함
+    </script>
+  </body>
+</html>
