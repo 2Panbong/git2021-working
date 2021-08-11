@@ -28,6 +28,12 @@
 
       alert(usersMapped[0].id); // 1
       alert(usersMapped[0].fullName); // John Smith
+
+      //----------------------------------sam------------------------------
+      let usersMapped = users.map((item) => ({
+        fullName: `${item.name} ${item.surname}`,
+        id: item.id,
+      }));
     </script>
   </body>
 </html>

@@ -24,6 +24,35 @@
       console.log(camelize("list-style-image")); //== "listStyleImage";
       console.log(camelize("-webkit-transition")); //== "WebkitTransition";
       // split을 사용해 문자열을 배열로 바꾼 다음 join을 사용해 다시 합치면 됩니다.
+
+      //----------------------------------sam-----------------------------------
+      //케밥케이스 문자열을 카멜케이스 문자열로
+
+      function camelize(str) {
+        // -구분자로 문자열을 나눠서 배열화
+        let strArr = str.split("-");
+        console.log(strArr);
+
+        // 첫번째 반복
+        // acc =""
+        // item = "background"
+        // index = 0;
+        // acc = acc + "background"
+
+        // 두번째 반복
+        // acc ="background"
+        // item = "color"
+        // index = 1
+        // acc = acc + "color"
+
+        // 최종 반환값
+        // acc = "backgroundColor"
+        return strArr.reduce(
+          (acc, item, index) =>
+            acc + (index == 0 ? item : item[0].toUpperCase() + item.substr(1)),
+          ""
+        );
+      }
     </script>
   </body>
 </html>

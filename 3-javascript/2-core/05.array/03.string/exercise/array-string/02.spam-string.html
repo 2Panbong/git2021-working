@@ -21,6 +21,26 @@
       checkSpam("buy ViAgRA now"); //== true;
       checkSpam("free xxxxx"); //== true;
       checkSpam("innocent rabbit"); //== false;
+
+      //------------------sam---------------------------------
+      function checkSpam(str) {
+        // 자바스크립트는 항상 긴가만가 한게 있으면 돌려보고 실행해야함
+        // 탐색할 문자열을 모두 소문자로 변환
+        let strLower = str.toLowerCase();
+        // 문자열에 아래의 키워드가 포함되어있는지
+        //'viagra', 'xxx'
+        for (let keyword of ["viagra", "xxx"]) {
+          // 해당문자열에 대해서 검사
+          if (strLower.includes(keyword)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      console.log(checkSpam("buy ViAgRA now")); //== true;
+      console.log(checkSpam("free xxxxx")); //== true;
+      console.log(checkSpam("innocent rabbit")); //== false;
     </script>
   </body>
 </html>

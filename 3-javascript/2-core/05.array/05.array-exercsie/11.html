@@ -1,6 +1,7 @@
 <html>
   <body>
     <script>
+      // 아직안품
       // 평균 나이 구하기
       //      age를 나타내는 프로퍼티를 가진 객체가 여러 개 담긴 배열이 있습니다.
       //      평균 나이를 반환해주는 함수 getAverageAge(users)를 작성해보세요.
@@ -17,6 +18,20 @@
       }
 
       alert(getAverageAge(arr)); // (25 + 30 + 29) / 3 = 28
+      //----------------sam-------------------------------
+
+      function getAverageAge(users) {
+        let sum = 0;
+        for (let item of arr) {
+          sum + item.age;
+        }
+        return sum / arr.length;
+        // return Math.trunc(sum/arr.length); // 소수점 자르기
+        // return Math.floor(sum/arr.length); // 소수점 내림
+        // return Math.round(sum/arr.length); // 소수점 올림
+      }
+
+      console.log(getAverageAge(arr));
     </script>
   </body>
 </html>

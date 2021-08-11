@@ -16,6 +16,22 @@
       // 새로운배열을 만드는건 slice와 concat 그리고 map이 있다.
 
       alert(names); // John, Pete, Mary
+
+      //-----------------------------sam-------------------------
+      let john = { name: "John", age: 25 };
+      let pete = { name: "Pete", age: 30 };
+      let mary = { name: "Mary", age: 28 };
+
+      let users = [john, pete, mary];
+
+      // let userObject={john, pete, mary}
+
+      console.log(users);
+
+      // map함수는 배열크기와 동일하고 요소가 변형된 배열을 생성
+      let names = users.map((item) => item.name);
+
+      console.log(names); //["John", "Pete", "Mary"]
     </script>
   </body>
 </html>

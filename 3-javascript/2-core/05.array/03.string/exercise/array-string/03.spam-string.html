@@ -26,6 +26,17 @@
       console.log(truncate("What I'd like to tell on this topic is:", 20)); //= "What I'd like to te…"
 
       truncate("Hi everyone!", 20); //= "Hi everyone!"
+
+      //------------------sam---------------------------------
+      function truncate(str, maxlenght) {
+        return str.length > maxlenght - 1
+          ? str.substr(0, maxlenght - 1) + "..." // ... 이 글자 하나짜리로 인식됨
+          : str;
+      }
+
+      console.log(truncate("What I'd like tell on this topic is:", 20));
+      console.log(truncate("Hi everyone!", 20));
+      // gamification : 게임화
     </script>
   </body>
 </html>
