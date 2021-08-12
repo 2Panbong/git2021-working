@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <!-- 임의의 DOM 요소 노드 elem이 있다고 가정해봅시다.
+    elem.lastChild.nextSibling은 항상 null일까요?
+    elem.children[0].previousSibling은 항상 null일까요? -->
+
+    <!-- elem.lastChild가 마지막 자식노드이므로 그 다음의 형제노드는 없다. 따라서 null이다.-->
+    <!--elem.children[0]은  elem의 첫번째 자식노드이므로 그 전에는 요소노드가 아닌다른노드가 올 수 있다.
+    예를 들어서 #text같이 엔터가 되어있는것들?-->
+    <script>
+      //~sibling : node(탐색 -> textnode, htmlelement)
+      // chileren : element 탐색
+      console.log(document.body.lastChild.nextSibling);
+      console.log;
+    </script>
+  </body>
+</html>
