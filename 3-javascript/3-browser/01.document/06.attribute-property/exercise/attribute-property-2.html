@@ -1,0 +1,41 @@
+<html>
+  <body>
+    <!-- 문제는 아직 못품 자꾸 콘솔이 에러가남 -->
+    <a name="list">the list</a>
+    <ul>
+      <li><a href="http://google.com">http://google.com</a></li>
+      <li><a href="/tutorial">/tutorial.html</a></li>
+      <li><a href="local/path">local/path</a></li>
+      <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+      <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+      <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+    </ul>
+    <script>
+      // style 프로퍼티를 변경해 모든 외부링크를 주황색으로 만들어보세요
+      // 아래 조건을 만족해야함
+      // href 에 :// 가 포함되어야함
+      // 하지만 http://internal.com으로 시작하면 안됨
+
+      // const a = document.querySelectorAll("a");
+      // console.log(a);
+
+      // const href = document.querySelectorAll("a").querySelectorAll("href");
+      // console.log(href);
+
+      // sam
+      const links = document.querySelectorAll("ul a"); // 자손도 가능하지만 그러면 ul>li>a를해야함
+      console.log(links);
+
+      for (let link of links) {
+        // link.href로 하면 서버 주소가 붙음
+        // getAttribute로 해야 입력된 값만 받아옴
+        const href = link.getAttribute("href");
+        console.log(href);
+
+        if (href.includes("://") && !href.includes("http://internal.com")) {
+          link.style.color = "orange";
+        }
+      }
+    </script>
+  </body>
+</html>
