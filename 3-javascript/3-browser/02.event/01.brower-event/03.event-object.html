@@ -1,23 +1,20 @@
 <html>
   <body>
-    <button id="elem">클릭해 주세요</button>
+    <button id="elem">클릭해 주세요.</button>
     <script>
       const elem = document.querySelector("#elem");
 
-      //const click =
-
-      // 이벤트가 실행될 떄 event 객체를 매개변수로 넘겨줌
+      // 이벤트가 실행될 때 event 객체를 매개변수로 넘겨줌
+      // event가 길게 느껴질수도 있어서 e로 줄여서 쓰기도함
       const click = (e) => {
         console.log(e);
-        console.log(e.target);
-        console.log(e.type);
-        console.log(e.clientX);
+        console.log(e.target); //이벤트 타겟 currenttarget도 있지만 일단 target으로해라
+        console.log(e.type); // 이벤트를 발생시킨 애
+        console.log(e.clientX); // 좌표값
         console.log(e.clientY);
       };
 
       elem.addEventListener("click", click);
-
-      // add이벤트리스너 이베네트 객체가 넘어오고 이벤트 이름이 많이 있다 라는 정도
     </script>
   </body>
 </html>

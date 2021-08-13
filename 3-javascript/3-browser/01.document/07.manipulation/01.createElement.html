@@ -9,30 +9,35 @@
         background-color: #dff0d8;
       }
     </style>
+
     <div id="container">
       <div>annother 태그</div>
     </div>
+
     <script>
       // document.createElement(태그)
       // 1.해당 태그의 요소를 생성함
-
       let div = document.createElement("div");
 
       // 2. 해당 요소의 속성들을 설정함(div class="alert")
-      div.className = "alert"; // class랑 예약어가 이미 있기때문에 className으로 함
+      div.className = "alert";
 
       // 3. 해당 요소의 내용을 채워넣음
-      div.innerHTML =
-        "<strong>안녕하세요!</strong> 중요 메시지를 확인하셨습니다.";
+      let strong = document.createElement("strong");
+      strong.innerHTML = "안녕하세요!";
+      div.append(strong);
 
-      // 요쇼.append(요소) -> 가장 뒤쪽에 삽입
+      div.innerHTML += "중요 메시지를 확인하셨습니다.";
+
+      // 요소.append(요소) -> 가장 뒤쪽에 삽입
       // 4. 어떤 요소에 만든 요소를 삽입함
+
       const container = document.querySelector("#container");
       setTimeout(() => {
         container.append(div); // 요소 안에 가장 마지막 자식으로 추가함
-        // container.prepend(div); // 요소 안에 가장 첫번째 자식으로 추가함\
-        // container.before(div); // 요소 이전에 형제요소 추가됨
-        // container.after(div); // 요소 다음에 형제요소로 추가됨
+        container.prepend(div); // 요소 안에 가장 첫번째 자식으로 추가함
+        container.before(div); // 요소 이전에 형제요소로 추가됨
+        container.after(div); // 요소 다음에 형제요소로 추가됨
       }, 2000);
     </script>
   </body>

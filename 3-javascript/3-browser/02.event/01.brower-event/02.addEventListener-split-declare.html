@@ -1,0 +1,26 @@
+<html>
+  <body>
+    <button id="elem">클릭해 주세요.</button>
+    <button id="elem1">클릭해 주세요.</button>
+    <button id="elem2">클릭해 주세요.</button>
+    <script>
+      // 변수 선언부 이렇게 할수도있고 만약 애로우펑션이라면 위에 선언부가 오겠지?
+      const elem = document.querySelector("#elem");
+      const elem1 = document.querySelector("#elem1");
+      const elem2 = document.querySelector("#elem2");
+
+      // 이벤트 리스너 등록부
+      // 똑같은 처리를 할때 함수의 이름을 쓰면 간단히 할 수 있음
+      elem.addEventListener("click", click);
+      elem2.addEventListener("click", click);
+      elem3.addEventListener("click", click);
+
+      // 함수 선언부: 실제 이벤트가 처리되는 부분
+      function click(event) {
+        console.log(event);
+        // console.log(this); // button // this는 오히려 좀 더 디테일한 제어가 안됨. event로 받아올 수 있음
+        alert("클릭");
+      }
+    </script>
+  </body>
+</html>

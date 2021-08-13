@@ -1,11 +1,19 @@
 <html>
   <body>
-   
-   <button onclick = "alert('클릭')"">클릭해주세요</button>
-   <!-- 엘리멘트점이벤트리스너 이런것만 쓸거임 -->
+    <button onclick="alert('클릭!')">클릭해 주세요.</button>
+    <input type="button" onclick="countRabbits()" value="토끼를 세봅시다!" />
     <script>
-     
-
+      // 이런 형식이 있다는 것만 알아두고 짜진 말아라
+      // "." 으로  DOM property있는데 그것도 까먹어라 쓰지말아라
+      function countRabbits() {
+        for (let i = 1; i <= 3; i++) {
+          alert(`토끼 ${i}마리`);
+        }
+      }
     </script>
+    <!-- button 태그를 써라!-->
+    <!-- input type button 같은거 쓰지말아라, 옛날방식이다 -->
+    <!-- 나오는 건 똑같은데 의미가 있는 시멘틱 button태그를 써라-->
+    <!-- 엘리먼트.에드이벤트리스너를 기억하면됨-->
   </body>
 </html>

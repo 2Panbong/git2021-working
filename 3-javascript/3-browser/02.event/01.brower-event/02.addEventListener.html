@@ -1,34 +1,33 @@
 <html>
   <body>
-    <button id="elem">클릭해 주세요</button>
+    <button id="elem">클릭해 주세요.</button>
     <script>
-      // 함수 선언부 : 실제 이벤트가 처리되는 부분
-      // 사실 this가 필요없는 지경이다.
-      // const click = (event) => {
-      //   console.log(event);
-      //   // console.log(this); // button
-      //   alert("클릭");
-      // }
+      const click = (event) => {
+        console.log(event);
+        // console.log(this); // button // this는 오히려 좀 더 디테일한 제어가 안됨. event로 받아올 수 있음
+        alert("클릭");
+      };
+
+      //이벤트 발생시 처리할 함수를 등록할 수 있음
 
       const elem = document.querySelector("#elem");
 
       // 요소에 이벤트를 처리할 함수를 등록
-      // 요소. addEventListener("이벤트명",이벤트 처리 함수
+      // 요소.addEventListener("이벤트명",이벤트처리함수)
 
-      // 익명함수 스타일
-      elem.addEventListener("click", () => {
-        alert("클릭");
-      });
+      // 익명 함수 스타일
+      // 익명 함수 스타일은 함수를 등록하는 부분과 처리하는 부분이 분리가 안된다.
+      // elem.addEventListener("click", () => {
+      //   alert("클릭");
+      // });
 
-      // (권장) 함수 별도 작성 및 callback으로 전달
-      elem.addEventListener("click", click);
+      // (권장)함수 별도 작성 및 callback으로 전달
+      elem.addEventListener("click", click); // 이게 콜백함수다
 
-      // 웬만하면 이런 아래의 스타일을 쓰는 것이 좋다.
-      // 함수 선언부
-      function click() {
-        console.log(this); // button
-        alert("클릭");
-      }
+      // const click = () => {
+      //   console.log(this); // button
+      //   alert("클릭");
+      // }
     </script>
   </body>
 </html>
