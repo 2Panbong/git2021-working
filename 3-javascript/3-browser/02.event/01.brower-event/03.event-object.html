@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <button id="elem">클릭해 주세요</button>
+    <script>
+      const elem = document.querySelector("#elem");
+
+      //const click =
+
+      // 이벤트가 실행될 떄 event 객체를 매개변수로 넘겨줌
+      const click = (e) => {
+        console.log(e);
+        console.log(e.target);
+        console.log(e.type);
+        console.log(e.clientX);
+        console.log(e.clientY);
+      };
+
+      elem.addEventListener("click", click);
+
+      // add이벤트리스너 이베네트 객체가 넘어오고 이벤트 이름이 많이 있다 라는 정도
+    </script>
+  </body>
+</html>
