@@ -95,6 +95,18 @@
           add(event);
         }
       });
+      txtName.addEventListener("keyup", (event) => {
+        if (event.keyCode == 13) {
+          // email.blur();
+          add(event);
+        }
+      });
+      txtPhoneNumber.addEventListener("keyup", (event) => {
+        if (event.keyCode == 13) {
+          // email.blur();
+          add(event);
+        }
+      });
 
       // 버튼에 이벤트추가함
       btnAdd.addEventListener("click", add);
@@ -134,6 +146,7 @@
       `;
 
         emptyTr.insertAdjacentHTML("afterend", tr);
+        formInput.reset();
       }
 
       // const td = /*html*/ `
@@ -146,14 +159,12 @@
       //   </td>
       // `;
 
-      formInput.reset();
-
       function remove(event) {
         // 이벤트를 발생시킨 요소의 class에 remove가 있으면
         if (event.target.className.includes("remove")) {
           // 삭제버튼
           const btnRemove = event.target;
-          // 삭제버턴의 부모 노드인
+          // 삭제버튼의 부모 노드의 부모노드
           const firstTr = btnRemove.parentNode.parentNode;
           firstTr.remove();
         }
