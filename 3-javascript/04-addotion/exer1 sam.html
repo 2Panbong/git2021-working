@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <!-- 변화가 생길 때마다 값을 '자동으로 저장’하는 textarea 필드를 만들어보세요.
+    사용자가 실수로 페이지를 닫은 경우, 다시 열었을 때 미처 마무리하지 못했던
+    입력을 이어서 할 수 있도록 해줍시다. -->
+    <textarea placeholder="Write here"></textarea>
+    <br />
+    <!-- 버튼 내리는건 br쓰던지 div쓰던지 하면됨 -->
+    <button>clear</button>
+    <script>
+      const txt = document.querySelector("textarea");
+      const btn = document.querySelector("button");
+      const storageKey = "memo";
+
+      // 텍스트 에리어에 입력할때마다 이벤트 처리
+      txt.addEventListener("keyup", () => {
+        // console.log(txt.value);
+        // 로컬 스토리지에 저장
+        localStorage.setItem(storageKey, txt.value);
+      });
+
+      // claera 버튼을 클릭했을 때 텍스트에리어 및 로컬스토리지 값 삭제
+      btn.addEventListener("click", () => {
+        txt.value = "";
+        localStorage.removeItem("storageKey");
+      });
+
+      // window.addEventListener("load")
+
+      // 스크립트 실행될 때 스토리지 값 가져오기
+      // 페이지 로딩이 됐을때(스크립트가 가장 하단엔 있다는 전제하에)
+      txt.value = localStorage.getItem(storageKey);
+    </script>
+  </body>
+</html>

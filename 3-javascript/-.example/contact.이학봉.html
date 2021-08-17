@@ -18,7 +18,7 @@
   <body style="width: 800px" class="mx-auto">
     <!--바디넓이와 부트스트랩기능씀-->
 
-    <h1 class="text-center my-5">연락처 관리</h1>
+    <header><h1 class="text-center my-5">연락처 관리</h1></header>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -136,16 +136,17 @@
         }
 
         const tr = /*html*/ `
-      <tr><td>${startNumber++}</td>
-      <td>${txtName.value}</td>
-      <td>${txtPhoneNumber.value}</td>
-      <td>${email.value}</td>
-        <td>
+      <tr><td width="5%">${startNumber++}</td>
+      <td width="6%">${txtName.value}</td>
+      <td width="11%">${txtPhoneNumber.value}</td>
+      <td width="9.5%">${email.value}</td>
+        <td width="2%">
           <button class="btn btn-outline-secondary btn-sm remove">삭제</button>          
         </td></tr>
       `;
 
-        emptyTr.insertAdjacentHTML("afterend", tr);
+        tbody.insertAdjacentHTML("afterbegin", tr);
+        //하다가 테이블구조망가져서 tbody의 자식요소로 집어넣으니 안망가짐!
         formInput.reset();
       }
 
