@@ -114,6 +114,16 @@
       tbody.addEventListener("click", remove);
       // 클릭이벤트 발생시 remove라는 함수 호출
 
+      const trTmpl = `
+      <tr data-id="@id"><td width="5%">@Number.value</td>
+      <td width="6%">@Name.value</td>
+      <td width="11%">@PhoneNumber.value</td>
+      <td width="9.5%">@email.value</td>
+        <td width="2%">
+          <button class="btn btn-outline-secondary btn-sm remove">삭제</button>
+        </td></tr>
+      `;
+
       // 이벤트 처리
       function add(event) {
         console.log(txtName.value);
@@ -126,20 +136,34 @@
           <div class="alert alert-danger alert-dismissible my-2" role="alert" id="liveAlert">
             ＃입력하지 않은 값이 있습니다.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>    
+          </div>
           `;
           formInput.insertAdjacentHTML("afterend", alert); // 태그끝에 alert를 보여줌
 
           return;
         }
 
+        // 데이터 가져오기
+        const data = getData();
+
+        const id = data.length > 0 ? data[0].id + 1 : 1;
+
+        data.unshift({
+          id,
+          name: txtName.value,
+          number: txtPhoneNumber.value,
+          email: email.value,
+        });
+
+        setData(data);
+
         const tr = /*html*/ `
-      <tr><td width="5%">${startNumber++}</td>
+      <tr data-id="${id}"><td width="5%">${startNumber++}</td>
       <td width="6%">${txtName.value}</td>
       <td width="11%">${txtPhoneNumber.value}</td>
       <td width="9.5%">${email.value}</td>
         <td width="2%">
-          <button class="btn btn-outline-secondary btn-sm remove">삭제</button>          
+          <button class="btn btn-outline-secondary btn-sm remove">삭제</button>
         </td></tr>
       `;
 
@@ -165,9 +189,49 @@
           const btnRemove = event.target;
           // 삭제버튼의 부모 노드의 부모노드
           const firstTr = btnRemove.parentNode.parentNode;
+
+          // 삭제하기전 일단 데이터 가져오기
+          const data = getData();
+
+          const newData = data.filter((item) => item.id != firstTr.dataset.id);
+
+          console.log(firstTr.dataset.id);
+          setData(newData);
+
           firstTr.remove();
         }
       }
+
+      function setData(data) {
+        // 데이터를 JSON문자열로 변환
+        localStorage.setItem("mani", JSON.stringify(data));
+      }
+
+      function getData() {
+        // 위와 반대로 JSON문자열을 배열로 반환
+        let data = JSON.parse(localStorage.getItem("mani"));
+        if (!data) {
+          data = [];
+        }
+        return data;
+      }
+
+      function renderData() {
+        // 로컬스토리지에서 데이터 읽어옴
+        const data = getData();
+        console.log(data);
+
+        tbody.innerHTML = data.map((item) =>
+          trTmpl
+            .replace("@id", item.id)
+            .replace("@Name", item.name)
+            .replace("@PhoneNumber", item.number)
+            .replace("@email", item.email)
+            .join("")
+        );
+      }
+
+      renderData();
     </script>
   </body>
 </html>

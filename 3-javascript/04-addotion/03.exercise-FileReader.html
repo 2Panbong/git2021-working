@@ -37,16 +37,30 @@
         // FileReader 객체가 파일 읽기를 완료하면 함수가 실행됨
         reader.onload = () => {
           console.log(reader.result);
+          const dataUrl = reader.result;
 
           // 이미지일 때와 비디오일 때 나눠서 처리
           let elm = "";
           if (file.type.includes("image")) {
-            elm = `<img src = ${reader.result} width ="500">`;
+            elm = /*html*/ `<img src =${dataUrl} width = "500">`;
           } else {
-            elm = `<video> src = ${reader.result} width= 500 controls</video>`;
+            elm = /*html*/ `
+            <video width="500" controls>
+              <source src=${dataUrl} type="video/mp4"></source>
+            </video>`;
           }
 
-          div.innerHTML = img;
+          div.innerHTML = elm;
+
+          // 이미지일 때와 비디오일 때 나눠서 처리
+          // let elm = "";
+          // if (file.type.includes("image")) {
+          //   elm = `<img src = ${reader.result} width ="500">`;
+          // } else {
+          //   elm = `<video> src = ${reader.result} width= 500 controls</video>`;
+          // }
+
+          // div.innerHTML = img;
         };
       });
     </script>
