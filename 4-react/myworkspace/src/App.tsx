@@ -54,17 +54,20 @@ import Home from "./components/Home";
 import Navigation from "./Navigation";
 
 // SPA(Single Page Application)
-// :페이지 파일이 1개, index.htmp
-// : 특정 영역에 컴포넌트(js)를 로딩함
-// : 에플리케이션 처음 로딩될 때 import한  컴포넌트를 로딩함
-// 	-> 컴파일 됐을 때 파일크기가 커짐, 초기 로딩할 때 시간 걸림
+// : 페이지 파일이 1개, index.html
+// : 특정 영역(Switch)에 컴포넌트(js)를 로딩함
+// : 애플리케이션이 컴파일될 때 import한 컴포넌트가 같이 컴파일됨
+//   -> 컴파일됐을 때 파일크기가 커짐, 초기 로딩할 때 시간 걸림
 
+// Lazy-Loading 처리
+// 컴포넌트를 방문하는 시점에 로딩함
 const Counter = lazy(() => import("./components/Counter"));
 const Calculator = lazy(() => import("./components/CalculatorRef"));
 const Generator = lazy(() => import("./components/Generator"));
 const AccountManager = lazy(() => import("./components/AccountManagerRef"));
 const Components = lazy(() => import("./components/Components"));
 const BootStrap = lazy(() => import("./components/Bootstrap"));
+const Todo = lazy(() => import("./components/Todo"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -80,7 +83,7 @@ function App() {
         </nav>
         <main style={{ marginLeft: "200px", marginTop: "20px" }}>
           {/* Suspense 컴포넌트로 로딩중에 보여줄 화면을 처리하는 것 */}
-          {/* fallback ={로딩중에 보여줄 컴포넌트} */}
+          {/* fallback={로딩중에 보여줄 컴포넌트} */}
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
               {/* Switch 영역에 컴포넌트가 로딩됨 */}
@@ -93,6 +96,7 @@ function App() {
               <Route path="/generator" component={Generator} />
               <Route path="/account-manager" component={AccountManager} />
               <Route path="/bootstrap" component={BootStrap} />
+              <Route path="/todo" component={Todo} />
             </Switch>
           </Suspense>
         </main>
@@ -101,5 +105,5 @@ function App() {
   );
 }
 
-// APP.tsx 모듈의 기본 내보내기를 App 함수로 함
+// App.tsx 모듈의 기본 내보내기를 App 함수로 함
 export default App;
