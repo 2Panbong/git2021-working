@@ -49,9 +49,9 @@
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import { Link } from "react-router-dom";
 
 import Home from "./components/Home";
-import Navigation from "./Navigation";
 
 // SPA(Single Page Application)
 // : 페이지 파일이 1개, index.html
@@ -61,13 +61,9 @@ import Navigation from "./Navigation";
 
 // Lazy-Loading 처리
 // 컴포넌트를 방문하는 시점에 로딩함
-const Counter = lazy(() => import("./components/Counter"));
-const Calculator = lazy(() => import("./components/CalculatorRef"));
-const Generator = lazy(() => import("./components/Generator"));
-const AccountManager = lazy(() => import("./components/AccountManagerRef"));
-const Components = lazy(() => import("./components/Components"));
-const BootStrap = lazy(() => import("./components/Bootstrap"));
+
 const Todo = lazy(() => import("./components/Todo"));
+const Feed = lazy(() => import("./components/Feed_이학봉"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -79,24 +75,35 @@ function App() {
           style={{ width: "200px", height: "100vh", top: "20px" }}
           className="position-fixed"
         >
-          <Navigation />
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/todo">Todo</Link>
+            </li>
+            <li>
+              <Link to="/feed">Feed</Link>
+            </li>
+          </ul>
         </nav>
         <main style={{ marginLeft: "200px", marginTop: "20px" }}>
           {/* Suspense 컴포넌트로 로딩중에 보여줄 화면을 처리하는 것 */}
           {/* fallback={로딩중에 보여줄 컴포넌트} */}
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            }
+          >
             <Switch>
               {/* Switch 영역에 컴포넌트가 로딩됨 */}
 
               {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
               <Route path="/" component={Home} exact />
-              <Route path="/components" component={Components} />
-              <Route path="/counter" component={Counter} />
-              <Route path="/calculator" component={Calculator} />
-              <Route path="/generator" component={Generator} />
-              <Route path="/account-manager" component={AccountManager} />
-              <Route path="/bootstrap" component={BootStrap} />
               <Route path="/todo" component={Todo} />
+              <Route path="/feed" component={Feed} />
             </Switch>
           </Suspense>
         </main>
