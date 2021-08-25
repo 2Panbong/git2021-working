@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
 
-import SadCat from "./SadCat";
-
 interface FeedState {
   id: number;
   text: string | undefined;
@@ -17,15 +15,7 @@ const getTimeString = (unixtime: number) => {
 };
 
 const Feed = () => {
-  const [feed, setFeed] = useState<FeedState[]>([
-    {
-      id: 1,
-      text: " 난 이제 지쳤어요 땡벌 땡벌 과제하다 지쳤어요 땡벌 땡벌",
-      url: SadCat,
-      createTime: new Date().getTime(),
-      type: "image/png",
-    },
-  ]);
+  const [feed, setFeed] = useState<FeedState[]>([]);
 
   const formRef = useRef<HTMLFormElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
@@ -73,17 +63,12 @@ const Feed = () => {
 
   return (
     <>
-      <form
-        id="form-input"
-        className="mt-5"
-        ref={formRef}
-        onSubmit={(e) => e.preventDefault()}
-      >
+      <form className="mt-5" ref={formRef} onSubmit={(e) => e.preventDefault()}>
         <textarea
           className="form-control mb-1"
           placeholder="Leave a post here"
           ref={textRef}
-          style={{ boxSizing: "border-box" }}
+          style={{ boxSizing: "border-box", height: "100px" }}
         ></textarea>
         <div className="d-flex">
           <input
@@ -143,7 +128,8 @@ const Feed = () => {
                 )}
               </span>
               <a
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault(); // 기본동작방지 필수로 써주어라 a태그에 링크를달려면
                   remove(item.id);
                 }}
                 href="#!"

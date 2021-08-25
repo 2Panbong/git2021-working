@@ -6,6 +6,7 @@ interface AlertProp {
 
 const Alert = ({ message, variant, onClose }: AlertProp) => {
   return (
+    <>
     <div
       className={`alert alert-${variant} alert-dismissible my-2`}
       role="alert"
@@ -22,6 +23,7 @@ const Alert = ({ message, variant, onClose }: AlertProp) => {
         onClick={onClose}
       ></button>
     </div>
+    </>
   );
 };
 
