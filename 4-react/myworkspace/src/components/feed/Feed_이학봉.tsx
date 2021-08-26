@@ -1,13 +1,8 @@
 import { useRef, useState } from "react";
+import { produce } from "immer";
 
-interface FeedState {
-  id: number;
-  text: string | undefined;
-  url: string | undefined;
-  createTime: number;
-  modifyTime?: number;
-  type: string;
-}
+import { FeedState } from "./type";
+import FeedEditModal from "./FeedEditModal";
 
 const getTimeString = (unixtime: number) => {
   const dateTime = new Date(unixtime);
@@ -16,6 +11,8 @@ const getTimeString = (unixtime: number) => {
 
 const Feed = () => {
   const [feed, setFeed] = useState<FeedState[]>([]);
+
+  const [isEdit, setIsEdit] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
@@ -61,9 +58,46 @@ const Feed = () => {
   //   setFeed(feed.filter((item) => item.id !== id));
   // };
 
+  const editItem = useRef<FeedState>({
+    id: 0,
+    text: "",
+    url: "",
+    type: "",
+    createTime: 0,
+  });
+
+  const edit = (item: FeedState) => {
+    // 수정할 todo객체
+    editItem.current = item;
+    // 모달 팝업을 보여주기
+    setIsEdit(true);
+  };
+
+  const save = (editItem: FeedState) => {
+    console.log(editItem);
+    setFeed(
+      produce((state) => {
+        const item = state.find((item) => item.id === editItem.id);
+        // const url = state.find((item) => item.url === editItem.url);
+
+        // console.log(url);
+        if (item) {
+          item.text = editItem.text;
+          item.url = editItem.url;
+          item.type = editItem.type;
+        }
+      })
+    );
+
+    // 모달창 닫기
+    setIsEdit(false);
+  };
+
   return (
     <>
       <form className="mt-5" ref={formRef} onSubmit={(e) => e.preventDefault()}>
+        {/* isEdit state가 true일 때만 Modal 창이 보임 */}
+
         <textarea
           className="form-control mb-1"
           placeholder="Leave a post here"
@@ -93,6 +127,17 @@ const Feed = () => {
 
       {feed.length === 0 && <span>데이터가 없음</span>}
 
+      {isEdit && (
+        <FeedEditModal
+          item={editItem.current}
+          onClose={() => {
+            setIsEdit(false);
+          }}
+          onSave={(editItem) => {
+            save(editItem);
+          }}
+        />
+      )}
       {feed.map((item) =>
         item.type === "video/mp4" ? (
           <div key={item.id} className="card">
@@ -106,6 +151,15 @@ const Feed = () => {
                   item.modifyTime ? item.modifyTime : item.createTime
                 )}
               </span>
+              <a
+                onClick={() => {
+                  edit(item);
+                }}
+                href="#!"
+                className="link-secondary fs-6 float-end text-nowrap me-2"
+              >
+                수정
+              </a>
               <a
                 onClick={() => {
                   remove(item.id);
@@ -128,8 +182,16 @@ const Feed = () => {
                 )}
               </span>
               <a
-                onClick={(e) => {
-                  e.preventDefault(); // 기본동작방지 필수로 써주어라 a태그에 링크를달려면
+                onClick={() => {
+                  edit(item);
+                }}
+                href="#!"
+                className="link-secondary fs-6 float-end text-nowrap me-2"
+              >
+                수정
+              </a>
+              <a
+                onClick={() => {
                   remove(item.id);
                 }}
                 href="#!"
