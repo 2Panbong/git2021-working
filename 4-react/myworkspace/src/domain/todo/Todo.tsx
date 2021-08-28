@@ -54,6 +54,7 @@ const Todo = () => {
 
   // 컴포넌트가 업데이트 되도 유지시킬 수 있는 변수
   // 수정할 todo객체
+
   const editItem = useRef<TodoState>({ id: 0, memo: "", createTime: 0 });
 
   const edit = (item: TodoState) => {
@@ -80,70 +81,76 @@ const Todo = () => {
 
   return (
     <>
-      <h2 className="text-center my-5">할 일 관리</h2>
-      {/* isEdit state가 true일 때만 Modal 창이 보임 */}
-      {isEdit && (
-        <TodoEditModal
-          item={editItem.current}
-          onClose={() => {
-            setIsEdit(false);
-          }}
-          onSave={(editItem) => {
-            save(editItem);
-          }}
-        />
-      )}
-      <form
-        className="d-flex"
-        ref={formRef}
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <input
-          type="text"
-          className="form-control me-2"
-          placeholder="할 일 ..."
-          ref={inputRef}
-        />
-        <button
-          type="button"
-          className="btn btn-primary text-nowrap"
-          onClick={() => {
-            add();
-          }}
+      <div style={{ width: "40vw" }} className="mx-auto">
+        <h2 className="text-center my-5">할 일 관리</h2>
+        {/* isEdit state가 true일 때만 Modal 창이 보임 */}
+        {isEdit && (
+          <TodoEditModal
+            item={editItem.current}
+            onClose={() => {
+              setIsEdit(false);
+            }}
+            onSave={(editItem) => {
+              save(editItem);
+            }}
+          />
+        )}
+        <form
+          className="d-flex"
+          ref={formRef}
+          onSubmit={(e) => e.preventDefault()}
         >
-          추가
-        </button>
-      </form>
-      <ul id="ul-list" className="list-group list-group-flush mt-3" ref={ulRef}>
-        {/* 데이터와 UI요소 바인딩 */}
-        {todoList.map((item, index) => (
-          <li className="list-group-item d-flex" key={item.id}>
-            <div className="w-100">
-              <span className="me-1">{item.memo}</span>
-              <span style={{ fontSize: "0.75rem" }}>
-                - {getTimeString(item.createTime)}
-              </span>
-            </div>
-            <button
-              className="btn btn-outline-secondary btn-sm text-nowrap me-1"
-              onClick={() => {
-                // 수정 모달 팝업 띄우고 데이터 객체 넘겨주기
-                edit(item);
-              }}
-            >
-              수정
-            </button>
-            <button
-              className="btn btn-outline-secondary btn-sm text-nowrap"
-              onClick={() => {
-                del(item.id, index);
-              }}
-            >
-              삭제
-            </button>
-          </li>
-        ))}
-      </ul>
+          <input
+            type="text"
+            className="form-control me-2"
+            placeholder="할 일 ..."
+            ref={inputRef}
+          />
+          <button
+            type="button"
+            className="btn btn-primary text-nowrap"
+            onClick={() => {
+              add();
+            }}
+          >
+            추가
+          </button>
+        </form>
+        <ul
+          id="ul-list"
+          className="list-group list-group-flush mt-3"
+          ref={ulRef}
+        >
+          {/* 데이터와 UI요소 바인딩 */}
+          {todoList.map((item, index) => (
+            <li className="list-group-item d-flex" key={item.id}>
+              <div className="w-100">
+                <span className="me-1">{item.memo}</span>
+                <span style={{ fontSize: "0.75rem" }}>
+                  - {getTimeString(item.createTime)}
+                </span>
+              </div>
+              <button
+                className="btn btn-outline-secondary btn-sm text-nowrap me-1"
+                onClick={() => {
+                  // 수정 모달 팝업 띄우고 데이터 객체 넘겨주기
+                  edit(item);
+                }}
+              >
+                수정
+              </button>
+              <button
+                className="btn btn-outline-secondary btn-sm text-nowrap"
+                onClick={() => {
+                  del(item.id, index);
+                }}
+              >
+                삭제
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };

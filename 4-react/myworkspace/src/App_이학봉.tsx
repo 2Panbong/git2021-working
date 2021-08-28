@@ -51,7 +51,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 
-import Home from "./components/Home";
+import Home from "./domain/Home";
+import Profile from "./domain/profile/Profile";
 
 // SPA(Single Page Application)
 // : 페이지 파일이 1개, index.html
@@ -62,19 +63,21 @@ import Home from "./components/Home";
 // Lazy-Loading 처리
 // 컴포넌트를 방문하는 시점에 로딩함
 
-const Todo = lazy(() => import("./components/todo/Todo"));
-const Feed = lazy(() => import("./components/feed/Feed_이학봉"));
+const Todo = lazy(() => import("./domain/todo/Todo"));
+const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
+const Contact = lazy(() => import("./domain/Contact_이학봉"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
   return (
     <Router>
       {/* main container */}
-      <div style={{ width: "900px" }} className="mx-auto">
-        <nav
-          style={{ width: "200px", height: "100vh", top: "20px" }}
-          className="position-fixed"
-        >
+      <div className="mx-auto">
+        <header className="app-bar d-flex justify-content-end bg-primary shadow">
+          <Profile />
+        </header>
+        <nav className="drawer-menu position-fixed bg-light shadow-sm">
+          <h3 className="ms-2">MY WORKSPACE</h3>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -85,9 +88,12 @@ function App() {
             <li>
               <Link to="/feed">Feed</Link>
             </li>
+            <li>
+              <Link to="/contact">contact</Link>
+            </li>
           </ul>
         </nav>
-        <main style={{ marginLeft: "200px", marginTop: "20px" }}>
+        <main className="content-container">
           {/* Suspense 컴포넌트로 로딩중에 보여줄 화면을 처리하는 것 */}
           {/* fallback={로딩중에 보여줄 컴포넌트} */}
           <Suspense
@@ -104,6 +110,7 @@ function App() {
               <Route path="/" component={Home} exact />
               <Route path="/todo" component={Todo} />
               <Route path="/feed" component={Feed} />
+              <Route path="/contact" component={Contact} />
             </Switch>
           </Suspense>
         </main>

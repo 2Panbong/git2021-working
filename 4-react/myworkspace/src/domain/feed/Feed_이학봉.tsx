@@ -94,7 +94,8 @@ const Feed = () => {
   };
 
   return (
-    <>
+    <div style={{ width: "40vw" }} className="mx-auto">
+      <h1 className="text-center my-5">Feed</h1>
       <form className="mt-5" ref={formRef} onSubmit={(e) => e.preventDefault()}>
         {/* isEdit state가 true일 때만 Modal 창이 보임 */}
 
@@ -203,7 +204,7 @@ const Feed = () => {
           </div>
         )
       )}
-    </>
+    </div>
   );
 };
 

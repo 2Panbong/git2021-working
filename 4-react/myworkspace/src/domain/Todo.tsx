@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import Alert from "./base/Alert";
+import Alert from "../components/Alert";
 
 import { produce } from "immer";
 
@@ -33,6 +33,9 @@ const Todo = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
+
+  // event를 매개변수로 받아옴 근데 그 해당 event를 어떤 타입으로만 하게 할거냐
+  //event가 키보드이벤트가 발생하는 타입인데 그 이벤트의 타입은 HTMl INpElment다
 
   const add = (e: React.KeyboardEvent<HTMLInputElement> | null) => {
     // 이벤트 객체가 있을 때는 입력박스에서 엔터 입력
