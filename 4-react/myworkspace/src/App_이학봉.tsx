@@ -49,6 +49,9 @@
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import { Provider } from "react-redux"; // react 앱에 redux store를 제공해줌
+import { store } from "./store"; // redux store
+
 import { Link } from "react-router-dom";
 
 import Home from "./domain/Home";
@@ -70,52 +73,54 @@ const Contact = lazy(() => import("./domain/Contact_이학봉"));
 // React == 컴포넌트 개발 라이브러리
 function App() {
   return (
-    <Router>
-      {/* main container */}
-      <div className="mx-auto">
-        <header className="app-bar d-flex justify-content-end bg-primary shadow">
-          <Profile />
-        </header>
-        <nav className="drawer-menu position-fixed bg-light shadow-sm">
-          <h3 className="ms-2">MY WORKSPACE</h3>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/todo">Todo</Link>
-            </li>
-            <li>
-              <Link to="/feed">Feed</Link>
-            </li>
-            <li>
-              <Link to="/contact">contact</Link>
-            </li>
-          </ul>
-        </nav>
-        <main className="content-container">
-          {/* Suspense 컴포넌트로 로딩중에 보여줄 화면을 처리하는 것 */}
-          {/* fallback={로딩중에 보여줄 컴포넌트} */}
-          <Suspense
-            fallback={
-              <div className="spinner-border text-primary" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            }
-          >
-            <Switch>
-              {/* Switch 영역에 컴포넌트가 로딩됨 */}
+    <Provider store={store}>
+      <Router>
+        {/* main container */}
+        <div className="mx-auto">
+          <header className="app-bar d-flex justify-content-end bg-primary shadow">
+            <Profile />
+          </header>
+          <nav className="drawer-menu position-fixed bg-light shadow-sm">
+            <h3 className="ms-2">MY WORKSPACE</h3>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/todo">Todo</Link>
+              </li>
+              <li>
+                <Link to="/feed">Feed</Link>
+              </li>
+              <li>
+                <Link to="/contact">contact</Link>
+              </li>
+            </ul>
+          </nav>
+          <main className="content-container">
+            {/* Suspense 컴포넌트로 로딩중에 보여줄 화면을 처리하는 것 */}
+            {/* fallback={로딩중에 보여줄 컴포넌트} */}
+            <Suspense
+              fallback={
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              }
+            >
+              <Switch>
+                {/* Switch 영역에 컴포넌트가 로딩됨 */}
 
-              {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
-              <Route path="/" component={Home} exact />
-              <Route path="/todo" component={Todo} />
-              <Route path="/feed" component={Feed} />
-              <Route path="/contact" component={Contact} />
-            </Switch>
-          </Suspense>
-        </main>
-      </div>
-    </Router>
+                {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
+                <Route path="/" component={Home} exact />
+                <Route path="/todo" component={Todo} />
+                <Route path="/feed" component={Feed} />
+                <Route path="/contact" component={Contact} />
+              </Switch>
+            </Suspense>
+          </main>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
