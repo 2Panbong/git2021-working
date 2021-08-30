@@ -142,6 +142,9 @@ const Feed = () => {
       {feed.map((item) =>
         item.type === "video/mp4" ? (
           <div key={item.id} className="card">
+            <div className="card-header">
+              Feed 작성한 profile이미지, 사용자명
+            </div>
             <video controls>
               <source src={item.url} type="video/mp4"></source>
             </video>
@@ -174,6 +177,9 @@ const Feed = () => {
           </div>
         ) : (
           <div key={item.id} className="card">
+            <div className="card-header">
+              Feed 작성한 profile이미지, 사용자명
+            </div>
             <img src={item.url} className="card-img-top" alt="…" />
             <p className="card-text">{item.text}</p>
             <div className="card-body d-flex">

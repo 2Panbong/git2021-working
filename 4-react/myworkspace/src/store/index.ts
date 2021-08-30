@@ -1,20 +1,20 @@
-// 프론트엔드에서 state: UI 처리 바뀌게 하는 변수
-// -> 모달팝업상태(보이고, 안보이고),연락처목록상태(10개보이고, 5개보이고, 수정모드)
+// 프론트엔드 state: UI 처리 바뀌게 하는 변수
+// -> 모달팝업상태(보이고, 안보이고), 연락처 목록상태(10개보이고, 5개보이고, 수정모드)
 
-// 백엔드에서 state: 비즈니스 로직 처리가 바뀌게하는 데이터
-// -> 주문상태(주문요쳥,결제,결제확인,배송중,배송완료)
-//  -> 승인상태(제출, 검토중, 반려, 승인)
+// 백엔드 : state : 비즈니스 로직 처리가 바뀌게 하는 데이터
+// -> 주문상태(주문요청, 결제, 결제확인, 배송중, 배송완료)
+// -> 승인상태(제출, 검토중, 반려, 승인)
 
 import { configureStore } from "@reduxjs/toolkit";
 import profileReducer from "../domain/profile/profileSlice";
 
-// global state(전역 상태) 저장소
-// global state: profile, todo, contact ... 여러개 state가 있음
-// **이러한 state들은 다른 컴포넌트와 state가 공유 됨
+// global state(전역 상태) 저장소 만듬
+// global state : profile, todo, contact ... 여러가 state가 있음
+// ** 이러한 state들은 다른 컴포넌트와 state가 공유 됨
 export const store = configureStore({
   // 각 state별로 처리할 reducer 목록
   reducer: {
-    // state이름 : reducer이름
+    // state 이름: reducser 이름
     // profile state 처리하는 reducer를 등록
     profile: profileReducer,
   },
@@ -25,7 +25,7 @@ export const store = configureStore({
 
 // root state 타입 정의
 // 가장 최상위 state
-// state.profile, state.contact.....
+// state.profile, state.contact....
 export type RootState = ReturnType<typeof store.getState>;
 
 // dispatch 타입 정의

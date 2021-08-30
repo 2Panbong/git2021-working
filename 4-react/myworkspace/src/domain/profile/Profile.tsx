@@ -50,15 +50,29 @@ const Profile = () => {
     // local(component) state 처리
     // setProfile({ image: url, username: inputRef.current?.value });
 
-    // global state 처리
+    // global(redux) state 처리
+
+    // action creator의 반환객체로  dispatch하는 방법
     // dispatch(액션함수(페이로드));
     // 액션함수(페이로드) => 액션객체(type,payload)
-    // dispatch(액션객체)
-    // dispatch(saveProfile({image:url, username: inputRef.current?.value}))
-    dispatch({
-      type: "profile/saveProfile",
-      payload: { image: url, username: inputRef.current?.value },
+
+    // 1. action creator로 액션 객체 생성
+    const action = saveProfile({
+      image: url,
+      username: inputRef.current?.value,
     });
+
+    // 2. action을 dispatcher에 보냄
+    dispatch(action);
+
+    // dispatch(saveProfile({image:url, username: inputRef.current?.value}))
+
+    // action 객체를 바로 dispatch하는 방법
+    // dispatch(액션객체)
+    // dispatch({
+    //   type: "profile/saveProfile",
+    //   payload: { image: url, username: inputRef.current?.value },
+    // });
 
     setIsEdit(false);
   };
