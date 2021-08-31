@@ -1,0 +1,5 @@
+ssh -i "myworkspace.pem" ubuntu@ec2-52-78-53-57.ap-northeast-2.compute.amazonaws.com
+
+
+scp -i "myworkspace.pem" -r ./build/* ubuntu@ec2-52-78-53-57.ap-northeast-2.compute.amazonaws.com:/home/ubuntu/web/myworkspace
+

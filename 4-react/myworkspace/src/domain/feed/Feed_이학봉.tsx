@@ -3,13 +3,38 @@ import { produce } from "immer";
 
 import { FeedState } from "./type";
 import FeedEditModal from "./FeedEditModal";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import style from "./Feed.module.scss";
 
 const getTimeString = (unixtime: number) => {
+  // const dateTime = new Date(unixtime);
+
+  // return `${dateTime.toLocaleDateStrcaleTimeString()}`;
+
+  const now = new Date(); // 현재날짜-시간객체
+  // 1초 : 1000
+  // 1분 : 60 * 1000
+  // 1시간 : 60 * 60 * 1000
+  // 1일 24 * 60 * 60 * 1000
+  const day = 24 * 60 * 60 * 1000;
+
+  // Locale: timezone, currency 등
+  // js에서는 브라우저의 정보를 이용함
   const dateTime = new Date(unixtime);
-  return `${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`;
+
+  // 현재시간보다 24시간 이전이면 날짜를 보여주고
+  // 현재시간 보다 24시간 미만이면 시간을 보여줌
+
+  return unixtime - now.getTime() >= day
+    ? dateTime.toLocaleDateString
+    : dateTime.toLocaleTimeString();
 };
 
 const Feed = () => {
+  // profile state를 가져옴 + state가 변경되면 컴포넌트를 업데이트(diff+render)임
+  const profile = useSelector((state: RootState) => state.profile);
+
   const [feed, setFeed] = useState<FeedState[]>([]);
 
   const [isEdit, setIsEdit] = useState(false);
@@ -41,6 +66,8 @@ const Feed = () => {
           url: baseCode,
           createTime: new Date().getTime(),
           type: fileType,
+          img: profile.image,
+          username: profile.username,
         };
 
         setFeed([data, ...feed]);
@@ -64,6 +91,8 @@ const Feed = () => {
     url: "",
     type: "",
     createTime: 0,
+    img: "",
+    username: "",
   });
 
   const edit = (item: FeedState) => {
@@ -141,9 +170,15 @@ const Feed = () => {
       )}
       {feed.map((item) =>
         item.type === "video/mp4" ? (
-          <div key={item.id} className="card">
+          <div key={item.id} className="card mt-2">
             <div className="card-header">
-              Feed 작성한 profile이미지, 사용자명
+              <div className="d-flex">
+                <div
+                  className={`${style.thumb} me-1`}
+                  style={{ backgroundImage: `url(${item.img})` }}
+                ></div>
+                <span className={`${style.username}`}>{item.username}</span>
+              </div>
             </div>
             <video controls>
               <source src={item.url} type="video/mp4"></source>
@@ -178,7 +213,13 @@ const Feed = () => {
         ) : (
           <div key={item.id} className="card">
             <div className="card-header">
-              Feed 작성한 profile이미지, 사용자명
+              <div className="d-flex">
+                <div
+                  className={`${style.thumb} me-1`}
+                  style={{ backgroundImage: `url(${item.img})` }}
+                ></div>
+                <span className={`${style.username}`}>{item.username}</span>
+              </div>
             </div>
             <img src={item.url} className="card-img-top" alt="…" />
             <p className="card-text">{item.text}</p>

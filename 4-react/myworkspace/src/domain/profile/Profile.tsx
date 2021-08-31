@@ -21,6 +21,7 @@ const Profile = () => {
   // useSelector() 함수의 매개변수로 state를 리턴하는 함수를 넣어줌
   // useSelector 함수에서 return하는 함수의 매개변수로 root state를 넣어줌
 
+  // 0.
   const profile = useSelector((state: RootState) => state.profile);
 
   // redux dispatcher action을 전달하는 함수를 생성
@@ -61,6 +62,11 @@ const Profile = () => {
       image: url,
       username: inputRef.current?.value,
     });
+
+    //  {
+    //   type:"profile/saveProfile",
+    //   payload:{image, username}
+    // }
 
     // 2. action을 dispatcher에 보냄
     dispatch(action);
