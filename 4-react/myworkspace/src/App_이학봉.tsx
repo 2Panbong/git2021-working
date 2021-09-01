@@ -71,6 +71,8 @@ const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
 const Contact = lazy(() => import("./domain/Contact_이학봉"));
 const Photo = lazy(() => import("./domain/photo/Photo"));
 const PhotoCreate = lazy(() => import("./domain/photo/PhotoCreate"));
+const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
+const PhotoEdit = lazy(() => import("./domain/photo/PhotoEdit"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -119,7 +121,10 @@ function App() {
                 <Route path="/feed" component={Feed} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/photos" component={Photo} exact />
-                <Route path="/photos/create" component={PhotoCreate} exact />
+                <Route path="/photos/create" component={PhotoCreate} />
+                {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
+                <Route path="/photos/:id" component={PhotoDetail} exact />
+                <Route path="/photos/edit/:id" component={PhotoEdit} />
               </Switch>
             </Suspense>
           </main>

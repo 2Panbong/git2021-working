@@ -1,21 +1,48 @@
+import { read } from "@popperjs/core";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { RootState } from "../../store";
-import { PhotoItem } from "./photoSlice";
+import { AppDispatch, RootState } from "../../store";
+import { PhotoItem, addPhoto } from "./photoSlice";
 
 const PhotoCreate = () => {
   const history = useHistory();
   const photoData = useSelector((state: RootState) => state.photo.data);
+  const profile = useSelector((state: RootState) => state.profile);
+  const dispatch = useDispatch<AppDispatch>();
 
   const title = useRef<HTMLInputElement>(null);
   const desc = useRef<HTMLTextAreaElement>(null);
   const file = useRef<HTMLInputElement>(null);
 
   const add = () => {
-    const item: PhotoItem = {
-      id: photoData.length > 0 ? photoData[0].id + 1 : 1,
-    };
+    if (file.current?.files?.length) {
+      const imageFile = file.current.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        let maxId: number | undefined = 1;
+        if (photoData.size) {
+          maxId = Array.from(photoData.values())[0].id; // 그냥 get(0)하면 키가 똑바로 안떨어지니까
+        }
+
+        const item: PhotoItem = {
+          id: maxId ? maxId + 1 : 1,
+          profileUrl: profile.image ? profile.image : "",
+          username: profile.username ? profile.username : "",
+          title: title.current ? title.current.value : "",
+          description: desc.current?.value,
+          photoUrl: reader.result ? reader.result.toString() : "",
+        };
+
+        // redux store에 photo state에 item을 추가
+        dispatch(addPhoto(item));
+        // 포토 목록으로 이동
+        history.push("/photos");
+      };
+
+      reader.readAsDataURL(imageFile);
+    }
   };
 
   return (

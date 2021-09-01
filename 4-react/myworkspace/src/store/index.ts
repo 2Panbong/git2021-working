@@ -6,8 +6,13 @@
 // -> 승인상태(제출, 검토중, 반려, 승인)
 
 import { configureStore } from "@reduxjs/toolkit";
+import { enableMapSet } from "immer";
+
 import profileReducer from "../domain/profile/profileSlice";
 import photoReducer from "../domain/photo/photoSlice";
+
+// immer 객체에 Map을 사용하기
+enableMapSet();
 
 // global state(전역 상태) 저장소 만듬
 // global state : profile, todo, contact ... 여러가 state가 있음
