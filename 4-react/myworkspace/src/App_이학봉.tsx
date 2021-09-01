@@ -69,6 +69,8 @@ import Profile from "./domain/profile/Profile";
 const Todo = lazy(() => import("./domain/todo/Todo"));
 const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
 const Contact = lazy(() => import("./domain/Contact_이학봉"));
+const Photo = lazy(() => import("./domain/photo/Photo"));
+const PhotoCreate = lazy(() => import("./domain/photo/PhotoCreate"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -111,10 +113,13 @@ function App() {
                 {/* Switch 영역에 컴포넌트가 로딩됨 */}
 
                 {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
+                {/* exact: 속성은 true/false, 경로가 정확히 일치할때만 */}
                 <Route path="/" component={Home} exact />
                 <Route path="/todo" component={Todo} />
                 <Route path="/feed" component={Feed} />
                 <Route path="/contact" component={Contact} />
+                <Route path="/photos" component={Photo} exact />
+                <Route path="/photos/create" component={PhotoCreate} exact />
               </Switch>
             </Suspense>
           </main>
