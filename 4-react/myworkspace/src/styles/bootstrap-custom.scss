@@ -36,6 +36,8 @@ $border-radius-sm: 0;
 @import "~bootstrap/scss/utilities";
 /* ------------------------------------------------------------------------ */
 // Layout & Components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/card";
 @import "~bootstrap/scss/forms";
@@ -52,4 +54,5 @@ $border-radius-sm: 0;
 @import "~bootstrap/scss/utilities/api";
 
 // Icon
+// npm i install bootstrap-icons
 @import "~bootstrap-icons/font/bootstrap-icons.css";

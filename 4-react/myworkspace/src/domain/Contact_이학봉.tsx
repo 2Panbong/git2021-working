@@ -94,7 +94,7 @@ const Contactt = () => {
 
   return (
     <div style={{ width: "40vw" }} className="mx-auto">
-      <h1 className="text-center my-5">연락처 관리</h1>
+      <h1 className="text-center my-5">Contact-Inline</h1>
       <form className="d-flex" ref={formRef}>
         <input
           type="text"

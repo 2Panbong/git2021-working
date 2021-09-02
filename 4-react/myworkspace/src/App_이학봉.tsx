@@ -68,11 +68,13 @@ import Profile from "./domain/profile/Profile";
 
 const Todo = lazy(() => import("./domain/todo/Todo"));
 const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
-const Contact = lazy(() => import("./domain/Contact_이학봉"));
+const ContactInline = lazy(() => import("./domain/Contact_이학봉"));
 const Photo = lazy(() => import("./domain/photo/Photo"));
 const PhotoCreate = lazy(() => import("./domain/photo/PhotoCreate"));
-const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
-const PhotoEdit = lazy(() => import("./domain/photo/PhotoEdit"));
+const Contact = lazy(() => import("./domain/Contact-Redux/Contact"));
+const ContactCreate = lazy(
+  () => import("./domain/Contact-Redux/ContactCreate")
+);
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -85,7 +87,7 @@ function App() {
             <Profile />
           </header>
           <nav className="drawer-menu position-fixed bg-light shadow-sm">
-            <h3 className="ms-2">MY WORKSPACE</h3>
+            <h4 className="ms-2">MY WORKSPACE</h4>
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -97,7 +99,13 @@ function App() {
                 <Link to="/feed">Feed</Link>
               </li>
               <li>
-                <Link to="/contact">contact</Link>
+                <Link to="/contact-inline">Contact-Inline</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link to="/photos">Photos</Link>
               </li>
             </ul>
           </nav>
@@ -119,12 +127,13 @@ function App() {
                 <Route path="/" component={Home} exact />
                 <Route path="/todo" component={Todo} />
                 <Route path="/feed" component={Feed} />
-                <Route path="/contact" component={Contact} />
+                <Route path="/contact-inline" component={ContactInline} />
+                <Route path="/contact" component={Contact} exact />
+                <Route path="/contact/create" component={ContactCreate} />
                 <Route path="/photos" component={Photo} exact />
                 <Route path="/photos/create" component={PhotoCreate} />
+
                 {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
-                <Route path="/photos/:id" component={PhotoDetail} exact />
-                <Route path="/photos/edit/:id" component={PhotoEdit} />
               </Switch>
             </Suspense>
           </main>
