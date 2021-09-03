@@ -35,21 +35,33 @@ const Contact = () => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th>#</th>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>이메일</th>
-            <th>작업일시</th>
+            <th style={{ width: "5%" }} scope="col">
+              #
+            </th>
+            <th style={{ width: "15%" }} scope="col">
+              이름
+            </th>
+            <th style={{ width: "30%" }} scope="col">
+              전화번호
+            </th>
+            <th style={{ width: "30%" }} scope="col">
+              이메일
+            </th>
+            <th style={{ width: "20%" }} scope="col">
+              작업일시
+            </th>
           </tr>
         </thead>
         <tbody>
           {contact.data.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.number}</td>
-              <td>{item.email}</td>
-              <td>{item.createdTime}</td>
+              <td style={{ width: "5%" }} scope="col">
+                {item.id}
+              </td>
+              <td style={{ width: "15%" }}>{item.name}</td>
+              <td style={{ width: "30%" }}>{item.number}</td>
+              <td style={{ width: "30%" }}>{item.email}</td>
+              <td style={{ width: "20%" }}>{item.createdTime}</td>
             </tr>
           ))}
         </tbody>

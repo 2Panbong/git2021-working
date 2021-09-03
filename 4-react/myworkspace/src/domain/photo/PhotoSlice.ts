@@ -78,10 +78,23 @@ const photoSLice = createSlice({
   initialState,
   reducers: {
     // PayloadAction<payload타입>
+    // payload로 item 객체를 받음
     addPhoto: (state, action: PayloadAction<PhotoItem>) => {
       const photo = action.payload;
       console.log(photo);
       state.data.unshift(photo);
+    },
+    // payload로 id 값을 받음
+    // action: PayloadAction<number>
+    // reducer 넘어오는 action은 payload 있는 액션인데,
+    // payload의 타입이 number이다.
+    removePhoto: (state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      // id에 해당하는 아이템의 index를 찾고 그 index로 splice를 한다.
+      state.data.splice(
+        state.data.findIndex((item) => item.id === id),
+        1
+      );
     },
   },
 });

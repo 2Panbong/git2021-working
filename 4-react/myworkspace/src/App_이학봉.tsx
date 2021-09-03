@@ -75,6 +75,7 @@ const Contact = lazy(() => import("./domain/Contact-Redux/Contact"));
 const ContactCreate = lazy(
   () => import("./domain/Contact-Redux/ContactCreate")
 );
+const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -87,7 +88,7 @@ function App() {
             <Profile />
           </header>
           <nav className="drawer-menu position-fixed bg-light shadow-sm">
-            <h4 className="ms-2">MY WORKSPACE</h4>
+            <h4 className="ms-2 my-2">MY WORKSPACE</h4>
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -132,8 +133,8 @@ function App() {
                 <Route path="/contact/create" component={ContactCreate} />
                 <Route path="/photos" component={Photo} exact />
                 <Route path="/photos/create" component={PhotoCreate} />
-
                 {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
+                <Route path="/photos/detail/:id" component={PhotoDetail} />
               </Switch>
             </Suspense>
           </main>
