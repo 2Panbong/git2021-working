@@ -12,6 +12,8 @@ export interface PhotoItem {
   title: string;
   description?: string;
   photoUrl: string;
+  fileType: string;
+  fileName: string;
   createdTime: number;
 }
 
@@ -31,6 +33,8 @@ const initialState: PhotoState = {
       title: "펭귄이",
       description: "세 마리 펭귄들의 대화",
       photoUrl: penguin,
+      fileType: "image/jpeg",
+      fileName: "penguin.jpg",
       createdTime: new Date().getTime(),
     },
     {
@@ -40,6 +44,8 @@ const initialState: PhotoState = {
       title: "펭귄이",
       description: "세 마리 펭귄들의 대화",
       photoUrl: penguin,
+      fileType: "image/jpeg",
+      fileName: "penguin.jpg",
       createdTime: new Date().getTime(),
     },
     {
@@ -49,6 +55,8 @@ const initialState: PhotoState = {
       title: "펭귄이",
       description: "세 마리 펭귄들의 대화",
       photoUrl: penguin,
+      fileType: "image/jpeg",
+      fileName: "penguin.jpg",
       createdTime: new Date().getTime(),
     },
     {
@@ -58,6 +66,8 @@ const initialState: PhotoState = {
       title: "펭귄이",
       description: "세 마리 펭귄들의 대화",
       photoUrl: penguin,
+      fileType: "image/jpeg",
+      fileName: "penguin.jpg",
       createdTime: new Date().getTime(),
     },
     {
@@ -67,6 +77,8 @@ const initialState: PhotoState = {
       title: "펭귄이",
       description: "세 마리 펭귄들의 대화",
       photoUrl: penguin,
+      fileType: "image/jpeg",
+      fileName: "penguin.jpg",
       createdTime: new Date().getTime(),
     },
   ],
@@ -96,8 +108,22 @@ const photoSLice = createSlice({
         1
       );
     },
+    modifyPhoto: (state, action: PayloadAction<PhotoItem>) => {
+      // 생성해서 넘긴 객체
+      const modifyItem = action.payload;
+      // state에 있는 객체
+      const photoItem = state.data.find((item) => item.id === modifyItem.id);
+      // state에 있는 객체의 속성을 넘김 객체의 속성으로 변경
+      if (photoItem) {
+        photoItem.title = modifyItem.title;
+        photoItem.description = modifyItem.description;
+        photoItem.photoUrl = modifyItem.photoUrl;
+        photoItem.fileName = modifyItem.fileName;
+        photoItem.fileType = modifyItem.fileType;
+      }
+    },
   },
 });
-export const { addPhoto } = photoSLice.actions;
+export const { addPhoto, removePhoto, modifyPhoto } = photoSLice.actions;
 
 export default photoSLice.reducer;

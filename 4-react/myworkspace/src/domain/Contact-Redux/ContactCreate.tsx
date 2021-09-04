@@ -24,6 +24,7 @@ const ContactCreate = () => {
       name: nameInput.current ? nameInput.current.value : "",
       number: numberInput.current ? numberInput.current.value : "",
       email: emailInput.current ? emailInput.current.value : "",
+      memo: memoInput.current ? memoInput.current.value : "",
       createdTime: new Date().toLocaleTimeString(),
     };
 

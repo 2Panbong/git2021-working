@@ -7,7 +7,7 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import profileReducer from "../domain/profile/profileSlice";
-import photoReducer from "../domain/photo/PhotoSlice";
+import photoReducer from "../domain/photo/photoSlice";
 import contactReducer from "../domain/Contact-Redux/ContactSlice";
 
 // import { enableMapSet } from "immer";

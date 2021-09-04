@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store";
-import { removePhoto } from "./PhotoSlice";
+import { removePhoto } from "./photoSlice";
 
 const PhotoDetail = () => {
   // use Param<타입>, 매개변수들을 객체화할 형식을 제너릭으로 넣어줌
@@ -30,8 +30,59 @@ const PhotoDetail = () => {
     <div style={{ width: "40vw" }} className="mx-auto">
       <h2 className="text-center">Photo Detail</h2>
       {!photoItem && <div className="text-center my-5">데이터가 없습니다.</div>}
-      {photoItem && <table></table>}
-      <div>{id}</div>
+      {photoItem && (
+        <table className="table">
+          <tbody>
+            <tr>
+              <th>제목</th>
+              <td>{photoItem.title}</td>
+            </tr>
+            <tr>
+              <th>설명</th>
+              <td>{photoItem.description}</td>
+            </tr>
+            <tr>
+              <th>이미지</th>
+              <td>
+                <img src={photoItem.photoUrl} alt={photoItem.title} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      <div className="d-flex">
+        <div style={{ width: "50%" }}>
+          <button
+            className="btn btn-secondary me-1 float-start"
+            onClick={() => {
+              history.push("/photos");
+            }}
+          >
+            <i className="bi bi-grid-3x3-gap me-1"></i>
+            목록
+          </button>
+        </div>
+        <div style={{ width: "50%" }} className="d-flex justify-content-end">
+          <button
+            className="btn btn-primary me-1"
+            onClick={() => {
+              history.push(`/photos/edit/${id}`);
+            }}
+          >
+            <i className="bi bi-pencil me-1" />
+            수정
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              handDeleteClick();
+            }}
+          >
+            <i className="bi bi-trash me-1" />
+            삭제
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

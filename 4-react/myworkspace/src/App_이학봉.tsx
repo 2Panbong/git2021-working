@@ -75,7 +75,12 @@ const Contact = lazy(() => import("./domain/Contact-Redux/Contact"));
 const ContactCreate = lazy(
   () => import("./domain/Contact-Redux/ContactCreate")
 );
+const ContactDetail = lazy(
+  () => import("./domain/Contact-Redux/ContactDetail")
+);
+const ContactEdit = lazy(() => import("./domain/Contact-Redux/ContactEdit"));
 const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
+const PhotoEdit = lazy(() => import("./domain/photo/PhotoEdit"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {
@@ -122,7 +127,6 @@ function App() {
             >
               <Switch>
                 {/* Switch 영역에 컴포넌트가 로딩됨 */}
-
                 {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
                 {/* exact: 속성은 true/false, 경로가 정확히 일치할때만 */}
                 <Route path="/" component={Home} exact />
@@ -131,10 +135,13 @@ function App() {
                 <Route path="/contact-inline" component={ContactInline} />
                 <Route path="/contact" component={Contact} exact />
                 <Route path="/contact/create" component={ContactCreate} />
+                <Route path="/contact/detail/:id" component={ContactDetail} />
+                <Route path="/contact/edit/:id" component={ContactEdit} />{" "}
                 <Route path="/photos" component={Photo} exact />
                 <Route path="/photos/create" component={PhotoCreate} />
                 {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
                 <Route path="/photos/detail/:id" component={PhotoDetail} />
+                <Route path="/photos/edit/:id" component={PhotoEdit} />
               </Switch>
             </Suspense>
           </main>

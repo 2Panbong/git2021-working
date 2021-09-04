@@ -54,10 +54,14 @@ const Contact = () => {
         </thead>
         <tbody>
           {contact.data.map((item) => (
-            <tr key={item.id}>
-              <td style={{ width: "5%" }} scope="col">
-                {item.id}
-              </td>
+            <tr
+              key={item.id}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                history.push(`/contact/detail/${item.id}`);
+              }}
+            >
+              <th style={{ width: "5%" }}>{item.id}</th>
               <td style={{ width: "15%" }}>{item.name}</td>
               <td style={{ width: "30%" }}>{item.number}</td>
               <td style={{ width: "30%" }}>{item.email}</td>
