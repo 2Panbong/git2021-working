@@ -10,6 +10,20 @@ const ContactDetail = () => {
     state.contact.data.find((item) => item.id === +id)
   );
 
+  // const contactlength = useSelector(
+  //   (state: RootState) => state.contact.data.length
+  // );
+  // console.log(contactlength);
+
+  // if(contactItem) {
+  //   let pageExistence = true;
+  // // 다음페이지가 존재하지 않는다면 다음글 버튼이 보이지 않아야함
+  //   pageExistence =  contactItem.id===contactlength ? false:true
+  // }
+
+  // const pageExistence = true;
+  // // 다음페이지가 존재하지 않는다면 다음글 버튼이 보이지 않아야함
+
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -20,7 +34,6 @@ const ContactDetail = () => {
 
   return (
     <div>
-      (
       <div style={{ width: "40vw" }} className="mx-auto">
         <h2 className="text-center">Contact Create</h2>
         {!contactItem && (
@@ -45,7 +58,7 @@ const ContactDetail = () => {
                   <td>{contactItem?.email}</td>
                 </tr>
                 <tr>
-                  <th>메모</th>
+                  <th style={{ width: "20%" }}>메모</th>
                   <td
                     dangerouslySetInnerHTML={{
                       __html: contactItem.memo
@@ -68,6 +81,22 @@ const ContactDetail = () => {
             >
               <i className="bi bi-grid-3x3-gap me-1"></i>
               목록
+            </button>
+            <button
+              className="btn btn-secondary me-1 float-start me-1"
+              onClick={() => {
+                history.push(`/contact/detail/${+id - 1}`);
+              }}
+            >
+              <i className="bi bi-arrow-left-square-fill me-1"></i>이전글
+            </button>
+            <button
+              className="btn btn-secondary me-1 float-start"
+              onClick={() => {
+                history.push(`/contact/detail/${+id + 1}`);
+              }}
+            >
+              <i className="bi bi-arrow-right-square-fill me-1"></i>다음글
             </button>
           </div>
           <div style={{ width: "50%" }} className="d-flex justify-content-end">

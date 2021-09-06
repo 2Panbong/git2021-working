@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { AppDispatch, RootState } from "../../store";
-import { modifyPhoto } from "../photo/photoSlice";
 import { modifyContact } from "./ContactSlice";
 
 const ContactEdit = () => {
