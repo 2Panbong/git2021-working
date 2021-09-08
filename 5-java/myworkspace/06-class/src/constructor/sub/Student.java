@@ -5,9 +5,18 @@ package constructor.sub;
 // 하나의 단위 프로그램(전체 프로그램의 일부분)
 public class Student {
 
+	// default 접근 제한자
+	// 외부패키지에서는 접근불가
 	String name;
-	int age;
-	int semester; // 학기
+
+	// public 접근 제한자
+	// 모든 패키지의 클래스에서 사용 가능함
+	public int age;
+
+	// protected 접근 제한자
+	// 외부 패키지에서 사용불가인데 이 클래스를 상속(extends)받아서 사용하면 사용가능
+	protected int semester; // 학기
+
 	String major; // 학과
 
 	// 오버로딩(Overloading)
@@ -26,7 +35,7 @@ public class Student {
 	// 생성자(Constructor)
 	// 객체 생성시 초기화 역할 담당
 	// 클래스명과 동일한(대소문자로 시작하는 메서드)
-	Student() {
+	public Student() {
 		// 아무것도 처리안 함
 		// 객체 생성만 함
 		// 생성자를 임의로 만들면, 기본생성자는 제거됨
@@ -57,7 +66,7 @@ public class Student {
 		this.major = major;
 	}
 
-	void joinCourse() {
+	protected void joinCourse() {
 
 	}
 }

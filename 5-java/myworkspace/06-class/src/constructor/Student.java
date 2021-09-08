@@ -26,7 +26,7 @@ public class Student {
 	// 생성자(Constructor)
 	// 객체 생성시 초기화 역할 담당
 	// 클래스명과 동일한(대소문자로 시작하는 메서드)
-	Student() {
+	public Student() {
 		// 아무것도 처리안 함
 		// 객체 생성만 함
 		// 생성자를 임의로 만들면, 기본생성자는 제거됨
