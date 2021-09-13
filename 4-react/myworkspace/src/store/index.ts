@@ -8,7 +8,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import profileReducer from "../domain/profile/profileSlice";
 import photoReducer from "../domain/photo/photoSlice";
-import contactReducer from "../domain/Contact-Redux/ContactSlice";
+import contactReducer from "../domain/contact/ContactSlice";
 
 // import { enableMapSet } from "immer";
 // // immer 객체에 Map을 사용하기

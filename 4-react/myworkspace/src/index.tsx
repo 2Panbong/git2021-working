@@ -6,7 +6,7 @@ import "./index.css";
 // App.tsx 모듈을 가져오고 App이름으로 선언함
 // export default로 내보낸 객체가 App이름으로 선언됨
 // 가져오는 걸 이름을 마음대로 바꿀수도있음
-import App from "./App_이학봉"; // App.tsx
+import App from "./App"; // App.tsx
 
 import reportWebVitals from "./reportWebVitals";
 

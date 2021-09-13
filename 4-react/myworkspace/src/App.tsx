@@ -71,14 +71,10 @@ const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
 const ContactInline = lazy(() => import("./domain/Contact_이학봉"));
 const Photo = lazy(() => import("./domain/photo/Photo"));
 const PhotoCreate = lazy(() => import("./domain/photo/PhotoCreate"));
-const Contact = lazy(() => import("./domain/Contact-Redux/Contact"));
-const ContactCreate = lazy(
-  () => import("./domain/Contact-Redux/ContactCreate")
-);
-const ContactDetail = lazy(
-  () => import("./domain/Contact-Redux/ContactDetail")
-);
-const ContactEdit = lazy(() => import("./domain/Contact-Redux/ContactEdit"));
+const Contact = lazy(() => import("./domain/contact/Contact"));
+const ContactCreate = lazy(() => import("./domain/contact/ContactCreate"));
+const ContactDetail = lazy(() => import("./domain/contact/ContactDetail"));
+const ContactEdit = lazy(() => import("./domain/contact/ContactEdit"));
 const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
 const PhotoEdit = lazy(() => import("./domain/photo/PhotoEdit"));
 
