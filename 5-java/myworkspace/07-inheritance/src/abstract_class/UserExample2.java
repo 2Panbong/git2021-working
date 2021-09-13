@@ -1,4 +1,4 @@
-package polymorphism;
+package abstract_class;
 
 import override.Admin;
 import override.Member;
@@ -48,5 +48,4 @@ public class UserExample2 {
 		System.out.println(user.getPhone() + ": 공지사항 메시지를 보냅니다");
 		// .. emali, sms, push notification
 	}
-
 }

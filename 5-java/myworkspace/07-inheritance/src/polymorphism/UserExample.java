@@ -1,10 +1,6 @@
 package polymorphism;
 
-import override.Admin;
-import override.Member;
-import override.User;
-
-public class UserExample2 {
+public class UserExample {
 	public static void main(String[] args) {
 
 		// 일반 사용자
@@ -13,8 +9,6 @@ public class UserExample2 {
 		user.setName("홍길동");
 		user.setPhone("01012345678");
 		user.printUserInfo();
-
-		sendMessage(user); // param: User user < - User user
 
 		// 관리자
 		Admin admin = new Admin();
@@ -25,8 +19,6 @@ public class UserExample2 {
 		admin.printUserInfo();
 		// 추가 필드 및 메서드 사용, 부서번호
 		admin.setDeptNo("10001");
-		// param : User user <- Amdin admin
-		sendMessage(admin);
 
 		// 멤버십 멤버
 		Member member = new Member();
@@ -38,15 +30,5 @@ public class UserExample2 {
 		// 추가 필드 및 메서드 사용, 포인트
 		member.setPoint(100000);
 		member.printUserInfo();
-		// param : User user <- Member member
-		sendMessage(member);
 	}
-
-	// 부모타입으로 매개변수를 선언함
-	public static void sendMessage(User user) {
-		System.out.println("");
-		System.out.println(user.getPhone() + ": 공지사항 메시지를 보냅니다");
-		// .. emali, sms, push notification
-	}
-
 }

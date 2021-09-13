@@ -1,0 +1,18 @@
+프론트엔드: 
+- 언어: Typescript, SASS, HTML5
+- 라이브러리: React, Hooks, Redux, Redux-Toolkit, Redux-Saga
+- 기본환경구성: CRA(create-react-app)
+- UI프레임워크: Bootstrap 5
+- 배포: NginX, AWS EC2, AWS S3-Cloudfront(CDN)
+
+백엔드:
+- 언어: Java
+- 프레임워크: Spring Boot(웹-백엔드), Spring Data JPA(데이터베이스연동)
+- 데이터베이스: MySQL(메인), Redis(캐시, 세션)
+- 외부시스템: 공공데이터포털, 카카오인증시스템(OAuth2)
+- 미들웨어: Kafka(이벤트스트리밍, MQ), RabbitMQ(AMQP)
+- MSA: Spring Cloud 
+  - Spring Cloud Gateway: API Gateway
+  - Eureka: Service Registry
+  - Ribbon: Client-Side Loadbalancing
+- 배포: Jenkins(통합배포), AWS API Gateway 
