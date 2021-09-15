@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import Alert from "../components/Alert";
+import Alert from "../../components/Alert";
 
 import produce from "immer";
 
-import api from "../api/todo";
+import api from "./todoApi";
 
 // state 1건에 대한 타입
 interface TodoItemState {
@@ -47,7 +47,7 @@ const Todo = () => {
     // 백엔드에서 데이터 받아옴
     const res = await api.fetch();
 
-    console.log(res);
+    // console.log(res);
 
     // axios에서 응답받은 데이터는 data속성에 들어가있음
     // 서버로 부터 받은 데이터를 state 객체로 변경함
