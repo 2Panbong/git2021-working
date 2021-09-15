@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { produce } from "immer";
 
@@ -6,12 +6,22 @@ interface ContactState {
   id: number;
   name: string | undefined;
   number: number | string | undefined;
-  eamil: string | undefined;
+  email: string | undefined;
   isEdit?: boolean; // 수정모드 불리언값으로 여부확인하기 옵셔널체이닝
+}
+
+// 서버로부터 받아오는 데이터 1건에 대한 타입구조
+interface ContactItemReponse {
+  id: number;
+  name: string;
+  number: string;
+  email: string;
 }
 
 const Contactt = () => {
   const [toContact, setContact] = useState<ContactState[]>([]);
+  // 데이터 로딩처리 여부표시하기
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   // // 빈 값 여부 state 기본값으로 false를 넣어놓았다.
   // const [isError, setIsError] = useState(false);
@@ -22,12 +32,33 @@ const Contactt = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const tbodyRef = useRef<HTMLTableSectionElement>(null);
 
+  useEffect(() => {
+    console.log("--1. mounted--");
+    fetch("http://localhost:8080/contacts")
+      .then((res) => res.json())
+
+      .then((data: ContactItemReponse[]) => {
+        console.log("--2. fetch completed--");
+        console.log(data);
+        const contacts = data.map((item) => ({
+          id: item.id,
+          name: item.name,
+          number: item.number,
+          email: item.email,
+        })) as ContactItemReponse[];
+
+        setLoading(false); // 로딩중 여부 state 업데이트
+        setContact(contacts); // contact state 업데이트
+      });
+    console.log("--3.  complete--");
+  }, []);
+
   const add = () => {
     const toCon: ContactState = {
       id: toContact.length > 0 ? toContact[0].id + 1 : 1,
       name: nameRef.current?.value,
       number: numberRef.current?.value,
-      eamil: emailRef.current?.value,
+      email: emailRef.current?.value,
     };
 
     setContact(
@@ -85,7 +116,7 @@ const Contactt = () => {
           item.id = tbody_array[0].value;
           item.name = tbody_array[1].value;
           item.number = tbody_array[2].value;
-          item.eamil = tbody_array[3].value;
+          item.email = tbody_array[3].value;
           item.isEdit = false;
         }
       })
@@ -124,7 +155,15 @@ const Contactt = () => {
           추가
         </button>
       </form>
-      {toContact.length === 0 && <span>데이터가 없습니다</span>}
+      {/* 로딩중 처리 표시 */}
+      {isLoading && (
+        <li className="list-group-item text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </li>
+      )}
+      {!isLoading && toContact.length === 0 && <span>데이터가 없습니다</span>}
       <table className="table table-striped">
         <thead>
           <tr>
@@ -143,7 +182,7 @@ const Contactt = () => {
               {!item.isEdit && <td style={{ width: "5%" }}>{item.id}</td>}
               {!item.isEdit && <td style={{ width: "6%" }}>{item.name}</td>}
               {!item.isEdit && <td style={{ width: "11%" }}>{item.number}</td>}
-              {!item.isEdit && <td style={{ width: "9.5%" }}>{item.eamil}</td>}
+              {!item.isEdit && <td style={{ width: "9.5%" }}>{item.email}</td>}
               {!item.isEdit && (
                 <td style={{ width: "2%" }}>
                   {" "}
@@ -204,7 +243,7 @@ const Contactt = () => {
                   <input
                     type="text"
                     className="w-100"
-                    defaultValue={item.eamil}
+                    defaultValue={item.email}
                   />
                 </td>
               )}

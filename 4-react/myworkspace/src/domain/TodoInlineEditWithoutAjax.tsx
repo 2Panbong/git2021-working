@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Alert from "../components/Alert";
+import axios from "axios";
 
 import produce from "immer";
 
-import api from "../api/todo";
+// 이건 나중에 수업때 다시확인(확인 여부 :x)
 
 // state 1건에 대한 타입
 interface TodoItemState {
@@ -12,6 +13,13 @@ interface TodoItemState {
   createdTime: number;
   modifyTime?: number;
   isEdit?: boolean; // 수정모드인지 여부
+}
+
+// 서버로 부터 받아오는 데이터 1건에 대한 타입
+interface TodoItemReponse {
+  id: number;
+  memo: string;
+  createdTime: number;
 }
 
 const getTimeString = (unixtime: number) => {
@@ -44,8 +52,12 @@ const Todo = () => {
   const ulRef = useRef<HTMLUListElement>(null);
 
   const fetchData = async () => {
-    // 백엔드에서 데이터 받아옴
-    const res = await api.fetch();
+    // process.env.변수명
+    const url = `${process.env.REACT_APP_API_BASE}/todos`;
+    console.log(url);
+    // axios.get<응답데이터의타입>(응답URL);
+    // GET 응답 URL HTTP/1.1
+    const res = await axios.get<TodoItemReponse[]>(url);
 
     console.log(res);
 
@@ -69,6 +81,7 @@ const Todo = () => {
     // 백엔드에서 데이터를 받아올 것임
     // ES8 style로 async-await 기법을 이용해서 데이터를 조회해옴
     fetchData();
+    console.log("--3. completed--");
   }, []);
 
   const add = (e: React.KeyboardEvent<HTMLInputElement> | null) => {

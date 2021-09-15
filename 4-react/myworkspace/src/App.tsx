@@ -66,7 +66,7 @@ import Profile from "./domain/profile/Profile";
 // Lazy-Loading 처리
 // 컴포넌트를 방문하는 시점에 로딩함
 
-const Todo = lazy(() => import("./domain/todo/Todo"));
+const Todo = lazy(() => import("./domain/TodoInlineEdit"));
 const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
 const ContactInline = lazy(() => import("./domain/Contact_이학봉"));
 const Photo = lazy(() => import("./domain/photo/Photo"));
