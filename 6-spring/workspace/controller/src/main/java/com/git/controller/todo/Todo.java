@@ -13,4 +13,5 @@ public class Todo {
 	private long id;
 	private String memo;
 	private long createdTime;
+
 }

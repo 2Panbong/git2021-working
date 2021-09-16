@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 // @ResponseBody
 @RestController
 public class TodoController {
+
 	// HashMap 정렬이 안됨 : get(key) -> O(1)
 	// TreeMap 키 기준으로 정렬이 되었었음 : get(key) -> O(log n)
 	// ConcurrentSkipListMap : 키 기준으로 되었었음 : get(key) -> O(log n)
@@ -65,21 +66,29 @@ public class TodoController {
 			return null;
 		}
 
+		// 태그를 다 지웠더니 빈 문자열
+		String memo = getPlainText(todo.getMemo());
+		if (memo.isEmpty()) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
+
 		// id값을 생성 숫자값 1개 증가하고 가져오기
 		Long currentId = maxId.incrementAndGet();
 		// 입력받은 데이터로 todo객체를 생성
 		// id값과 생성일시는 서버에서 생성한 것으로 처리함
 		// html 태그가 있으면 날려버림(script에서 문제가 발생함)
 		// 빌더패턴으로 객체생성 - 생성자처럼 매개변수 순서 안지켜도됨
-		Todo todoItem = Todo.builder().id(currentId)
-//				.memo(todo.getMemo().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""))
-				.memo(todo.getMemo()).createdTime(new Date().getTime()).build();
+		Todo todoItem = Todo.builder().id(currentId).memo(memo)
+//				.memo(todo.getMemo())
+				.createdTime(new Date().getTime()).build();
 		// todo 목록객체에 추가
 		todos.put(currentId, todoItem);
 
 		// 리소스 생성됨
 		// res.setStatus(201);
 		res.setStatus(HttpServletResponse.SC_CREATED);
+
 		// 추가된 객체를 반환
 		return todoItem;
 	}
@@ -133,10 +142,22 @@ public class TodoController {
 			return null;
 		}
 
-		// 데이터 변경
-		findItem.setMemo(todo.getMemo());
+		String memo = getPlainText(todo.getMemo());
+		if (memo.isEmpty()) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
 
-		return new Todo();
+		// 데이터 변경
+		findItem.setMemo(memo);
+
+//		new Todo()
+		return findItem;
+	}
+
+	// html 태그를 제거하는 메서드
+	private String getPlainText(String text) {
+		return text.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
 	}
 
 }
