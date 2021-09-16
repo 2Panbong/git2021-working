@@ -1,11 +1,13 @@
-package com.example.testlombok;
+package com.example.lombok;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.lombok.Member;
+
 @SpringBootTest
-class TestLombokApplicationTests {
+class LombokApplicationTests {
 
 	@Test
 	void contextLoads() {

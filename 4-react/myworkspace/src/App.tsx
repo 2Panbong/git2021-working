@@ -54,8 +54,8 @@ import { store } from "./store"; // redux store
 
 import { Link } from "react-router-dom";
 
-import Home from "./domain/Home";
-import Profile from "./domain/profile/Profile";
+import Home from "./features/Home";
+import Profile from "./features/profile/Profile";
 
 // SPA(Single Page Application)
 // : 페이지 파일이 1개, index.html
@@ -66,17 +66,19 @@ import Profile from "./domain/profile/Profile";
 // Lazy-Loading 처리
 // 컴포넌트를 방문하는 시점에 로딩함
 
-const Todo = lazy(() => import("./domain/todo/TodoInlineEdit"));
-const Feed = lazy(() => import("./domain/feed/Feed_이학봉"));
-const ContactInline = lazy(() => import("./domain/Contact_이학봉"));
-const Photo = lazy(() => import("./domain/photo/Photo"));
-const PhotoCreate = lazy(() => import("./domain/photo/PhotoCreate"));
-const Contact = lazy(() => import("./domain/contact/Contact"));
-const ContactCreate = lazy(() => import("./domain/contact/ContactCreate"));
-const ContactDetail = lazy(() => import("./domain/contact/ContactDetail"));
-const ContactEdit = lazy(() => import("./domain/contact/ContactEdit"));
-const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
-const PhotoEdit = lazy(() => import("./domain/photo/PhotoEdit"));
+const Todo = lazy(() => import("./features/todo/TodoInlineEdit"));
+const Feed = lazy(() => import("./features/feed/Feed_이학봉"));
+const ContactInline = lazy(
+  () => import("./features/contact/Contact_Inline_이학봉")
+);
+const Photo = lazy(() => import("./features/photo/Photo"));
+const PhotoCreate = lazy(() => import("./features/photo/PhotoCreate"));
+const Contact = lazy(() => import("./features/contact/Contact"));
+const ContactCreate = lazy(() => import("./features/contact/ContactCreate"));
+const ContactDetail = lazy(() => import("./features/contact/ContactDetail"));
+const ContactEdit = lazy(() => import("./features/contact/ContactEdit"));
+const PhotoDetail = lazy(() => import("./features/photo/PhotoDetail"));
+const PhotoEdit = lazy(() => import("./features/photo/PhotoEdit"));
 
 // React == 컴포넌트 개발 라이브러리
 function App() {

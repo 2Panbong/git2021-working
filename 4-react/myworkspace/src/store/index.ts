@@ -6,9 +6,9 @@
 // -> 승인상태(제출, 검토중, 반려, 승인)
 
 import { configureStore } from "@reduxjs/toolkit";
-import profileReducer from "../domain/profile/profileSlice";
-import photoReducer from "../domain/photo/photoSlice";
-import contactReducer from "../domain/contact/ContactSlice";
+import profileReducer from "../features/profile/profileSlice";
+import photoReducer from "../features/photo/photoSlice";
+import contactReducer from "../features/contact/ContactSlice";
 
 // import { enableMapSet } from "immer";
 // // immer 객체에 Map을 사용하기

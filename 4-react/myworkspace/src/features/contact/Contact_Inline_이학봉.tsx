@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 import { produce } from "immer";
+import api from "./contactApi";
 
-interface ContactState {
+// state 1건에 대한 타입
+interface ContactItemState {
   id: number;
   name: string | undefined;
   number: number | string | undefined;
@@ -10,16 +12,16 @@ interface ContactState {
   isEdit?: boolean; // 수정모드 불리언값으로 여부확인하기 옵셔널체이닝
 }
 
-// 서버로부터 받아오는 데이터 1건에 대한 타입구조
-interface ContactItemReponse {
-  id: number;
-  name: string;
-  number: string;
-  email: string;
-}
+// // 서버로부터 받아오는 데이터 1건에 대한 타입구조
+// interface ContactItemReponse {
+//   id: number;
+//   name: string;
+//   number: string;
+//   email: string;
+// }
 
 const Contactt = () => {
-  const [toContact, setContact] = useState<ContactState[]>([]);
+  const [toContact, setContact] = useState<ContactItemState[]>([]);
   // 데이터 로딩처리 여부표시하기
   const [isLoading, setLoading] = useState<boolean>(true);
 
@@ -32,29 +34,34 @@ const Contactt = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const tbodyRef = useRef<HTMLTableSectionElement>(null);
 
+  const fetchData = async () => {
+    const res = await api.fetch();
+
+    // console.log(res);
+
+    // axios에서 응답받은 데이터는 data속성에 들어가있음
+    // 서버로 부터 받은 데이터를 state 객체로 변경함
+    const contacts = res.data.map((item) => ({
+      id: item.id,
+      name: item.name,
+      number: item.number,
+      email: item.email,
+    })) as ContactItemState[];
+
+    setLoading(false); // 로딩중 여부 state업데이트
+    setContact(contacts); // todo state 업데이트
+
+    console.log("--2. await axios.get completed--");
+  };
+
   useEffect(() => {
-    console.log("--1. mounted--");
-    fetch("http://localhost:8080/contacts")
-      .then((res) => res.json())
+    console.log("1번");
 
-      .then((data: ContactItemReponse[]) => {
-        console.log("--2. fetch completed--");
-        console.log(data);
-        const contacts = data.map((item) => ({
-          id: item.id,
-          name: item.name,
-          number: item.number,
-          email: item.email,
-        })) as ContactItemReponse[];
-
-        setLoading(false); // 로딩중 여부 state 업데이트
-        setContact(contacts); // contact state 업데이트
-      });
-    console.log("--3.  complete--");
+    fetchData();
   }, []);
 
   const add = () => {
-    const toCon: ContactState = {
+    const toCon: ContactItemState = {
       id: toContact.length > 0 ? toContact[0].id + 1 : 1,
       name: nameRef.current?.value,
       number: numberRef.current?.value,

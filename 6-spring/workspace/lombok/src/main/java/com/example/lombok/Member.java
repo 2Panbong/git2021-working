@@ -1,4 +1,4 @@
-package com.example.testlombok;
+package com.example.lombok;
 
 import lombok.Data;
 
