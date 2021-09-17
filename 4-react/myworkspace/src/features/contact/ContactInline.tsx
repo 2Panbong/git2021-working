@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Alert from "../../components/Alert";
 
 import { produce } from "immer";
 import api from "./contactApi";
@@ -27,6 +28,10 @@ const Contactt = () => {
 
   // // 빈 값 여부 state 기본값으로 false를 넣어놓았다.
   // const [isError, setIsError] = useState(false);
+
+  // // 에러 여부 state
+  const [isError, setIsError] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -60,27 +65,76 @@ const Contactt = () => {
     fetchData();
   }, []);
 
-  const add = () => {
-    const toCon: ContactItemState = {
-      id: toContact.length > 0 ? toContact[0].id + 1 : 1,
-      name: nameRef.current?.value,
-      number: numberRef.current?.value,
-      email: emailRef.current?.value,
-    };
+  const add = async () => {
+    // if (!nameRef.current?.value) {
+    //   setErrMessage("메모를 입력해주세요.");
+    //   setIsError(true);
+    //   return;
+    // }
 
-    setContact(
-      produce((state) => {
-        state.unshift(toCon);
-      })
-    );
+    if (
+      !nameRef.current?.value ||
+      !numberRef.current?.value ||
+      !emailRef.current?.value
+    ) {
+      setErrMessage("메모를 입력해주세요.");
+      setIsError(true);
+      return;
+    }
+    try {
+      const result = await api.add({
+        name: nameRef.current.value,
+        number: numberRef.current?.value,
+        email: emailRef.current?.value,
+      });
+      // const result = await api.add({ name: "" });
+      // 강제로 오류 발생 시켜봄
+      console.log(result);
+      // ---------------------state변경부분---------------
+      const toCon: ContactItemState = {
+        id: result.data.id,
+        name: result.data.name,
+        number: result.data.number,
+        email: result.data.email,
+      };
 
-    // 입력값 초기화
-    formRef.current?.reset();
+      // const toCon: ContactItemState = {
+      //   id: toContact.length > 0 ? toContact[0].id + 1 : 1,
+      //   name: nameRef.current?.value,
+      //   number: numberRef.current?.value,
+      //   email: emailRef.current?.value,
+      // };
+
+      setContact(
+        produce((state) => {
+          state.unshift(toCon);
+        })
+      );
+
+      // 입력값 초기화
+      formRef.current?.reset();
+      setIsError(false);
+    } catch (e: any) {
+      // for (let prop in e) {
+      // console.log(prop);
+      // }
+      console.log(e.response);
+      formRef.current?.reset();
+      // 에러 메시지를 표시
+      // const message = (e as Error).message;
+      // setIsError(true);
+      // setErrMessage(message);
+    }
   };
 
-  const del = (id: number, index: number) => {
+  const del = async (id: number, index: number) => {
     console.log(id);
     // immer 개편하네... 뭐지..
+
+    const result = await api.remove(id);
+    console.log(result.status);
+
+    // immer로 state 배열 직접 조작(index로 삭제)
     setContact(
       produce((state) => {
         state.splice(index, 1);
@@ -101,7 +155,9 @@ const Contactt = () => {
     );
   };
 
-  const save = (id: number, index: number) => {
+  const save = async (id: number, index: number) => {
+    console.log(tbodyRef.current);
+
     //  tbody밑에있는 입력박스중에서 index번째 입력박스만 선택함
     // const firstInput = tbodyRef.current?.querySelectorAll("input")[index];
 
@@ -114,20 +170,46 @@ const Contactt = () => {
     //https://developer.mozilla.org/ko/docs/Web/API/NodeList 모질라 사이트 참고 구글링
 
     let tbody_array = Array.prototype.slice.call(inputt);
+    console.log(tbody_array);
 
+    //-- 백엔드------------
+    if (!inputt) return; // undefined이면 반환
+    // 배열처리를 어떻게 해야하지
+    const result = await api.modify(id, {
+      // id값은 백엔드쪽에서 지정할거므로 item1번부터 값을 가져오게함 0번은 id임
+      // 만든건 id도 수정누르게 인풋이 되게 해놨지만 다시 수정하고 저장시에는 안되게끔해놓음
+      name: inputt?.item(1).value,
+      number: inputt?.item(2).value,
+      email: inputt?.item(3).value,
+    });
+
+    //-----------state 변경 부분---------
     setContact(
       produce((state) => {
         const item = state.find((item) => item.id === id);
         if (item) {
           // id값도 변경시킬수 있게 해봄
-          item.id = tbody_array[0].value;
-          item.name = tbody_array[1].value;
-          item.number = tbody_array[2].value;
-          item.email = tbody_array[3].value;
-          item.isEdit = false;
+          // item.id = tbody_array[0].value;
+          item.name = result.data.name;
+          item.number = result.data.number;
+          item.email = result.data.email;
+          item.isEdit = false; // 화면에 수정모드/뷰모드 제어
         }
       })
     );
+    // setContact(
+    //   produce((state) => {
+    //     const item = state.find((item) => item.id === id);
+    //     if (item) {
+    //       // id값도 변경시킬수 있게 해봄
+    //       item.id = tbody_array[0].value;
+    //       item.name = tbody_array[1].value;
+    //       item.number = tbody_array[2].value;
+    //       item.email = tbody_array[3].value;
+    //       item.isEdit = false;
+    //     }
+    //   })
+    // );
   };
 
   return (
@@ -162,6 +244,16 @@ const Contactt = () => {
           추가
         </button>
       </form>
+      {isError && (
+        <Alert
+          message={errMessage}
+          variant={"danger"}
+          // 닫기 버튼을 클릭할 때 처리하는 함수를 넘김
+          onClose={() => {
+            setIsError(false);
+          }}
+        />
+      )}
       {/* 로딩중 처리 표시 */}
       {isLoading && (
         <li className="list-group-item text-center">

@@ -104,7 +104,7 @@ const Todo = () => {
       // // 프론트엔드에서 응답 데이터를 받을 때
       // un-marshalling: 데이터전송용구조 -> 프로그램 객체구조
       // : JSON String -> Javascript object
-      const result = await api.add({ memo: inputRef.current?.value });
+      const result = await api.add({ memo: inputRef.current.value });
       // const result = await api.add({ memo: "" }); // 강제로 오류 발생 시켜봄
       console.log(result);
 

@@ -10,6 +10,14 @@ import profileReducer from "../features/profile/profileSlice";
 import photoReducer from "../features/photo/photoSlice";
 import contactReducer from "../features/contact/ContactSlice";
 
+import rootSaga from "../saga";
+import createSagaMiddleware from "@redux-saga/core";
+
+// saga middleware 생성
+// middleware : 중간에 먼가를 처리하는 소프트웨어
+// redux saga는 redux 상태처리 전/후에 무언가를 해주는 라이브러리
+const sagaMiddleware = createSagaMiddleware();
+
 // import { enableMapSet } from "immer";
 // // immer 객체에 Map을 사용하기
 // enableMapSet();
@@ -28,8 +36,28 @@ export const store = configureStore({
     // contact state 처리하는 reducere를 등록
     contact: contactReducer,
   },
+  // redux store(dispatcher)에 미들웨어 적용
+  // middleware는 여러개 사용할 수 있음, [defaultMiddlware, sagaMiddleware, thunkMiddleware]
+  middleware: [sagaMiddleware],
   devTools: true, // 개발툴 사용여부
 });
+
+// Redux
+/* 
+ comp -> dispatch(reduxaction) 
+ -> dispatcher -> reducer -> store/state
+ */
+
+// Redux-Saga
+/* 
+comp -> dispatch(sagaAction) 
+-> dispatcher -> saga -> api(서버연동) -> put(reduxAction)
+ -> dispatcher -> reducer -> store/state
+*/
+
+// saga middleware를 실행
+// rootSaga와 하위에 정의한 Redux Action들에 대해서 감지 시작\
+sagaMiddleware.run(rootSaga);
 
 // typescript에서는 몇가지 타입 선언을 해야함
 

@@ -1,4 +1,4 @@
-package com.git.controller.contact;
+package com.git.controller.photo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contact {
+public class Photo {
 	private long id;
-	private String name;
-	private String number;
-	private String email;
-//	private String memo;
+	private String title;
+	private String description;
+	private String photoUrl;
+	private String fileType;
+	private String fileName;
 	private long createdTime;
 }

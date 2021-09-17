@@ -68,9 +68,8 @@ import Profile from "./features/profile/Profile";
 
 const Todo = lazy(() => import("./features/todo/TodoInlineEdit"));
 const Feed = lazy(() => import("./features/feed/Feed_이학봉"));
-const ContactInline = lazy(
-  () => import("./features/contact/Contact_Inline_이학봉")
-);
+// const ContactInline = lazy(() => import("./features/contact/ContactInline"));
+const ContactInline = lazy(() => import("./features/contact/ContactInline"));
 const Photo = lazy(() => import("./features/photo/Photo"));
 const PhotoCreate = lazy(() => import("./features/photo/PhotoCreate"));
 const Contact = lazy(() => import("./features/contact/Contact"));
@@ -103,7 +102,7 @@ function App() {
                 <Link to="/feed">Feed</Link>
               </li>
               <li>
-                <Link to="/contact-inline">Contact-Inline</Link>
+                <Link to="/contactinline">Contact-Inline</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
@@ -130,7 +129,7 @@ function App() {
                 <Route path="/" component={Home} exact />
                 <Route path="/todo" component={Todo} />
                 <Route path="/feed" component={Feed} />
-                <Route path="/contact-inline" component={ContactInline} />
+                <Route path="/contactinline" component={ContactInline} />
                 <Route path="/contact" component={Contact} exact />
                 <Route path="/contact/create" component={ContactCreate} />
                 <Route path="/contact/detail/:id" component={ContactDetail} />

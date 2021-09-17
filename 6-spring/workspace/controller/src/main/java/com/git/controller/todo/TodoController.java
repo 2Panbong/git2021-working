@@ -53,6 +53,7 @@ public class TodoController {
 	// HttpServletRequests req도 넣어서 할수있음
 	@PostMapping(value = "/todos")
 	public Todo addTodo(@RequestBody Todo todo, HttpServletResponse res) {
+//		System.out.println(todo);
 		// 데이터 검증 로직을 추가
 		// 메모값이 없으면 에러처리함
 		if (todo.getMemo() == null || todo.getMemo().isEmpty()) {
@@ -88,6 +89,8 @@ public class TodoController {
 		// 리소스 생성됨
 		// res.setStatus(201);
 		res.setStatus(HttpServletResponse.SC_CREATED);
+
+//		System.out.println(todoItem);
 
 		// 추가된 객체를 반환
 		return todoItem;

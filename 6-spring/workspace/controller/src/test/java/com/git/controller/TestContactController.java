@@ -21,8 +21,9 @@ public class TestContactController {
 	void addContact() {
 		// given 단계 테스트 데이터 미리 준비해둠
 		ContactController controller = new ContactController();
-		Contact expected = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").memo("test입니다")
-				.build();
+//		Contact expected = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").memo("test입니다")
+//				.build();
+		Contact expected = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").build();
 
 		// when 단계 event flow를 수행하는 단계
 		// ServletResponse 객체는 가짜(Mock)을 넣어줌
@@ -37,7 +38,7 @@ public class TestContactController {
 
 		// 데이터 비교단계
 		assertEquals(1, actual.getId());
-		assertEquals(expected.getMemo(), actual.getMemo());
+//		assertEquals(expected.getMemo(), actual.getMemo());
 		assertEquals(expected.getName(), actual.getName());
 		assertEquals(expected.getEmail(), actual.getEmail());
 		assertEquals(expected.getNumber(), actual.getNumber());
@@ -48,8 +49,10 @@ public class TestContactController {
 		// given 단계 테스트 데이터를 준비함
 		ContactController controller = new ContactController();
 
-		Contact contactItem = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com")
-				.memo("test입니다").build();
+//		Contact contactItem = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com")
+//				.memo("test입니다").build();
+
+		Contact contactItem = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").build();
 
 		controller.addContact(contactItem, new MockHttpServletResponse());
 
@@ -68,9 +71,11 @@ public class TestContactController {
 	@Test
 	void modifyContact() {
 		ContactController controller = new ContactController();
+//
+//		Contact testItem = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").memo("test입니다")
+//				.build();
+		Contact testItem = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").build();
 
-		Contact testItem = Contact.builder().name("김동길").number("010-5093-0362").email("kim@naver.com").memo("test입니다")
-				.build();
 		controller.addContact(testItem, new MockHttpServletResponse());
 
 		// 변경할 테스트 데이터
@@ -78,8 +83,12 @@ public class TestContactController {
 		String expectedResultName = "김동길";
 		String expectedResultNumber = "010-5093-0362";
 		String expectedResultEmail = "kim@naver.com";
+
+//		Contact modifyData = Contact.builder().name(expectedResultName).number(expectedResultNumber)
+//				.email(expectedResultEmail).memo(expectedResult).build();
+
 		Contact modifyData = Contact.builder().name(expectedResultName).number(expectedResultNumber)
-				.email(expectedResultEmail).memo(expectedResult).build();
+				.email(expectedResultEmail).build();
 
 		HttpServletResponse res = new MockHttpServletResponse();
 
@@ -91,7 +100,8 @@ public class TestContactController {
 		// then - 예상결과와 실제결과 비교
 		// 목록 조회시 해당 아이템의 메모값이 예상결과과 일치해야함
 		List<Contact> contacts = controller.getContacts();
-		assertEquals(expectedResult, contacts.get(0).getMemo()); // 삭제 후에는 목록 크기가 0
+//		assertEquals(expectedResult, contacts.get(0).getMemo()); // 삭제 후에는 목록 크기가 0
+		assertEquals(expectedResult, contacts.get(0)); // 삭제 후에는 목록 크기가 0
 
 		// altanative flow - 1. id값이 없을때
 		// when - id를 2로 수정해봄
@@ -113,8 +123,10 @@ public class TestContactController {
 
 		// altanative flow - 2-2. 세가지 값이 빈 값("")인 경우
 		// when
-		Contact resultContactItemEmpty = controller.modifyContact(1,
-				Contact.builder().name("").email("").memo("").build(), res);
+//		Contact resultContactItemEmpty = controller.modifyContact(1,
+//				Contact.builder().name("").email("").memo("").build(), res);
+
+		Contact resultContactItemEmpty = controller.modifyContact(1, Contact.builder().name("").email("").build(), res);
 
 		// then 예상 결과와 실제 결과 비교
 		// 변환 객체가 null, Status Code 400
