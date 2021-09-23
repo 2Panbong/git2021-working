@@ -28,7 +28,8 @@ public class PhotoController {
 	private AtomicLong maxId = new AtomicLong();
 
 	@GetMapping(value = "/photos")
-	public List<Photo> getPhotos() {
+	public List<Photo> getPhotos() throws InterruptedException {
+		Thread.sleep(1000); // 임시적으로 1초 정지
 		return new ArrayList<Photo>(photos.values());
 	}
 
@@ -67,7 +68,8 @@ public class PhotoController {
 	}
 
 	@DeleteMapping(value = "/photos/{id}")
-	public boolean removePhotos(@PathVariable long id, HttpServletResponse res) {
+	public boolean removePhotos(@PathVariable long id, HttpServletResponse res) throws InterruptedException {
+//		Thread.sleep(5000);
 
 		// id에 해당하는 객체가 없으면
 		Photo photo = photos.get(Long.valueOf(id));
@@ -83,8 +85,9 @@ public class PhotoController {
 	}
 
 	@PutMapping(value = "/photos/{id}")
-	public Photo modifyPhotos(@PathVariable long id, @RequestBody Photo photo, HttpServletResponse res) {
-
+	public Photo modifyPhotos(@PathVariable long id, @RequestBody Photo photo, HttpServletResponse res)
+			throws InterruptedException {
+//		Thread.sleep(1000);
 		// id에 해당하는 객체가 없으면
 		Photo photoItem = photos.get(Long.valueOf(id));
 		if (photoItem == null) {

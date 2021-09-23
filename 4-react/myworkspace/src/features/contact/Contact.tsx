@@ -1,12 +1,21 @@
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { useEffect } from "react";
+import { requestFetchContacts } from "./contactSaga";
 
 const Contact = () => {
   // contact state 전체 가져오기
   const contact = useSelector((state: RootState) => state.contact);
 
   const history = useHistory();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (!contact.isFetched) {
+      dispatch(requestFetchContacts());
+    }
+  }, [dispatch, contact.isFetched]);
 
   // // 빈 값 여부 state 기본값으로 false를 넣어놓았다.
   // const [isError, setIsError] = useState(false);
@@ -21,17 +30,24 @@ const Contact = () => {
       <h1 className="text-center my-5">Contact</h1>
       <div className="d-flex justify-content-end mb-2">
         <button
+          className="btn btn-secondary me-2"
+          onClick={() => {
+            dispatch(requestFetchContacts());
+          }}
+        >
+          <i className="bi bi-arrow-clockwise"></i>
+          새로고침
+        </button>
+        <button
           className="btn btn-primary"
           onClick={() => {
-            history.push("/contact/create");
+            history.push("/contacts/create");
           }}
         >
           <i className="bi bi-plus" />
           추가
         </button>
       </div>
-      <form className="d-flex"></form>
-
       <table className="table table-hover">
         <thead>
           <tr>
@@ -58,7 +74,7 @@ const Contact = () => {
               key={item.id}
               style={{ cursor: "pointer" }}
               onClick={() => {
-                history.push(`/contact/detail/${item.id}`);
+                history.push(`/contacts/detail/${item.id}`);
               }}
             >
               <th style={{ width: "5%" }}>{item.id}</th>

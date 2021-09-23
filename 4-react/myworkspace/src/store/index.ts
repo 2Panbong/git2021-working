@@ -9,7 +9,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import profileReducer from "../features/profile/profileSlice";
 import photoReducer from "../features/photo/photoSlice";
 import contactReducer from "../features/contact/ContactSlice";
+import progressReducer from "../components/progress/progressSlice";
+import alertReducer from "../components/alert/alertSlice";
 
+// 최상위 사가
 import rootSaga from "../saga";
 import createSagaMiddleware from "@redux-saga/core";
 
@@ -35,6 +38,8 @@ export const store = configureStore({
     photo: photoReducer,
     // contact state 처리하는 reducere를 등록
     contact: contactReducer,
+    progress: progressReducer,
+    alert: alertReducer,
   },
   // redux store(dispatcher)에 미들웨어 적용
   // middleware는 여러개 사용할 수 있음, [defaultMiddlware, sagaMiddleware, thunkMiddleware]
@@ -51,12 +56,12 @@ export const store = configureStore({
 // Redux-Saga
 /* 
 comp -> dispatch(sagaAction) 
--> dispatcher -> saga -> api(서버연동) -> put(reduxAction)
+-> dispatcher -> saga -> api(서버연동) -> put(reduxAction)(추가단계)
  -> dispatcher -> reducer -> store/state
 */
 
 // saga middleware를 실행
-// rootSaga와 하위에 정의한 Redux Action들에 대해서 감지 시작\
+// rootSaga와 하위에 정의한 감지(take)할 Saga Action들에 대해서 감지 시작
 sagaMiddleware.run(rootSaga);
 
 // typescript에서는 몇가지 타입 선언을 해야함

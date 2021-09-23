@@ -56,6 +56,8 @@ import { Link } from "react-router-dom";
 
 import Home from "./features/Home";
 import Profile from "./features/profile/Profile";
+import Progress from "./components/progress/Progress";
+import AlertStack from "./components/alert/AlertStack";
 
 // SPA(Single Page Application)
 // : 페이지 파일이 1개, index.html
@@ -105,7 +107,7 @@ function App() {
                 <Link to="/contactinline">Contact-Inline</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/contacts">Contacts</Link>
               </li>
               <li>
                 <Link to="/photos">Photos</Link>
@@ -130,10 +132,10 @@ function App() {
                 <Route path="/todo" component={Todo} />
                 <Route path="/feed" component={Feed} />
                 <Route path="/contactinline" component={ContactInline} />
-                <Route path="/contact" component={Contact} exact />
-                <Route path="/contact/create" component={ContactCreate} />
-                <Route path="/contact/detail/:id" component={ContactDetail} />
-                <Route path="/contact/edit/:id" component={ContactEdit} />{" "}
+                <Route path="/contacts" component={Contact} exact />
+                <Route path="/contacts/create" component={ContactCreate} />
+                <Route path="/contacts/detail/:id" component={ContactDetail} />
+                <Route path="/contacts/edit/:id" component={ContactEdit} />{" "}
                 <Route path="/photos" component={Photo} exact />
                 <Route path="/photos/create" component={PhotoCreate} />
                 {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
@@ -141,6 +143,8 @@ function App() {
                 <Route path="/photos/edit/:id" component={PhotoEdit} />
               </Switch>
             </Suspense>
+            <Progress />
+            <AlertStack />
           </main>
         </div>
       </Router>

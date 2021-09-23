@@ -29,7 +29,7 @@ const ContactEdit = () => {
       item.createdTime = new Date().toLocaleTimeString();
       dispatch(modifyContact(item));
       // if문 안쓰면 안먹음..
-      history.push("/contact");
+      history.push("/contacts");
     }
   };
 
@@ -92,7 +92,7 @@ const ContactEdit = () => {
           <button
             className="btn btn-secondary float-start"
             onClick={() => {
-              history.push("/contact");
+              history.push("/contacts");
             }}
           >
             <i className="bi bi-grid-3x3-gap me-1"></i>

@@ -1,29 +1,42 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store";
-import { removePhoto } from "./photoSlice";
+import { requestRemovePhoto } from "./photoSaga";
+// import { removePhoto } from "./photoSlice";
 
 const PhotoDetail = () => {
-  // use Param<타입>, 매개변수들을 객체화할 형식을 제너릭으로 넣어줌
-  // Generic: <타입>: 타입을 매개변수로 넣음
-  // 타입에 따라서 처리를 다르게 하기 위함
-  // 객체지향 다형성(poly mophisim) : 같은 이름의 함수가 내부적으로 처리를 다르게 해줌
+  // useParam<타입>(), 매개변수들을 객체화할 형식을 제너릭으로 넣어줌
+  // Generic: <타입> 타입을 매개변수로 넣음
+  // 타입에 따라서 처리를 다르게 하기위함
+  // 객체지향 다형성(poly mophism): 같은 이름의 함수가 내부적으로 처리를 다르게 해줌
   const { id } = useParams<{ id: string }>();
+  // console.log(id);
 
-  // 타입 단언을 하지 않으면 추론에 의해서 PhotoItme | undefined 타입이 됨
-  // 타입 단언을 하면 변환 형식을 정의할 수 있음
+  // 타입 단언을 하지 않으면 추론에 의해서 PhotoItem | undefined 타입이 됨
+  // 타입 단언을 하면 반환 형식을 정의할 수 있음
   const photoItem = useSelector((state: RootState) =>
     state.photo.data.find((item) => item.id === +id)
-  ); //  반환형식을 타입 추론으로 처리
-  // ) as PhotoItem; // 타입 단언(type assertion)
-  console.log(photoItem);
+  ); // 반환형식을 타입 추론으로 처리
+  // ) as PhotoItem; // 타입 단언 (type assertion)
+  // console.log(photoItem);
+
+  // 삭제 여부 감지 및 가져오기
+  const isRemoveCompleted = useSelector(
+    (state: RootState) => state.photo.isRemoveCompleted
+  );
 
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
+  useEffect(() => {
+    isRemoveCompleted && history.push("/photos");
+  }, [isRemoveCompleted, history]);
+
   const handDeleteClick = () => {
-    dispatch(removePhoto(+id)); // id값만 넣어서 삭제
-    history.push("/photos"); // 목록화면으로 이동
+    dispatch(requestRemovePhoto(+id)); // saga action으로 대체
+    // dispatch(removePhoto(+id)); // id값만 넣어서 삭제
+    // history.push("/photos"); // 목록화면으로 이동
   };
 
   return (
@@ -44,16 +57,21 @@ const PhotoDetail = () => {
             <tr>
               <th>이미지</th>
               <td>
-                <img src={photoItem.photoUrl} alt={photoItem.title} />
+                <img
+                  src={photoItem.photoUrl}
+                  alt={photoItem.title}
+                  width={"100%"}
+                />
               </td>
             </tr>
           </tbody>
         </table>
       )}
+
       <div className="d-flex">
         <div style={{ width: "50%" }}>
           <button
-            className="btn btn-secondary me-1 float-start"
+            className="btn btn-secondary me-1"
             onClick={() => {
               history.push("/photos");
             }}
@@ -73,7 +91,7 @@ const PhotoDetail = () => {
             수정
           </button>
           <button
-            className="btn btn-primary"
+            className="btn btn-danger"
             onClick={() => {
               handDeleteClick();
             }}

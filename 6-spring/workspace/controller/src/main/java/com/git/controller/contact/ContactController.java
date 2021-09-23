@@ -46,12 +46,12 @@ public class ContactController {
 		// 데이터 검증 로직
 		// 메모값이 없으면 에러처리
 //		if (contact.getMemo() == null || contact.getMemo().isEmpty()) {
-//			// 클라이언트에서 메모값이 없이 보내거나 빈값으로 보낸것임
-//			// 클라이언트 오류, 4xx
-//			// 요청값을 잘못보낸 것임 - Bad Request(400)
-//			// res.setStatus(400)
-//
-//			// Dispatcher Servlet이 생성한 응답객체에 status코드를 넣어줌
+////			// 클라이언트에서 메모값이 없이 보내거나 빈값으로 보낸것임
+////			// 클라이언트 오류, 4xx
+////			// 요청값을 잘못보낸 것임 - Bad Request(400)
+////			// res.setStatus(400)
+////
+////			// Dispatcher Servlet이 생성한 응답객체에 status코드를 넣어줌
 //			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 //			return null;
 //		} else 
@@ -69,6 +69,12 @@ public class ContactController {
 			return null;
 		}
 
+		// 네임에서 입력했을때 태그가 있으면 태그를 다 지우고 빈 문자열
+		String memo = getPlainText(contact.getMemo());
+		if (memo.isEmpty()) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
 		// 네임에서 입력했을때 태그가 있으면 태그를 다 지우고 빈 문자열
 		String name = getPlainText(contact.getName());
 		if (name.isEmpty()) {
@@ -98,8 +104,10 @@ public class ContactController {
 
 		Contact contactItem = Contact.builder().id(currentId)
 //					.memo(contact.getMemo()).createdTime(new Date().getTime()).build();
-//				.memo(contact.getMemo()).name(contact.getName()).number(contact.getNumber()).email(contact.getEmail())
-				.name(name).number(number).email(email).createdTime(new Date().getTime()).build();
+//				.memo(contact.getMemo()).name(contact.getName()).number(contact.getNumber()).email(contact.getEmail()).build();
+//				.memo(memo).name(name).number(number).email(email).createdTime(new Date().getTime()).build();
+				.name(name).number(number).email(email).memo(memo).createdTime(new Date().getTime()).build();
+//				.name(name).number(number).email(email).createdTime(new Date().getTime()).build();
 		// contact 목록객체에 추가
 		contacts.put(currentId, contactItem);
 
@@ -143,25 +151,33 @@ public class ContactController {
 //		// 데이터 검증 로직
 //		// 메모값이 없으면 에러처리
 //		if (contact.getMemo() == null || contact.getMemo().isEmpty()) {
-//			// 클라이언트 오류, 4xx
-//			// 요청값을 잘못보낸 것임 - Bad Request(400)
-//			// res.setStatus(400) //SC_BAD_REQUEST자체가 400번 코드임
-//
-//			// Dispatcher Servlet이 생성한 응답객체에 status코드를 넣어줌
+////			// 클라이언트 오류, 4xx
+////			// 요청값을 잘못보낸 것임 - Bad Request(400)
+////			// res.setStatus(400) //SC_BAD_REQUEST자체가 400번 코드임
+////
+////			// Dispatcher Servlet이 생성한 응답객체에 status코드를 넣어줌
 //			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 //			return null;
-//		} else
+//		} else 
 		if (contact.getName() == null || contact.getName().isEmpty()) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
-		} else if (contact.getEmail() == null || contact.getEmail().isEmpty()) {
-			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return null;
-		} else if (contact.getNumber() == null || contact.getNumber().isEmpty()) {
+		}
+//			else if (contact.getEmail() == null || contact.getEmail().isEmpty()) {
+//			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//			return null;
+//		} 
+		else if (contact.getNumber() == null || contact.getNumber().isEmpty()) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
 
+//		// 네임에서 입력했을때 태그가 있으면 태그를 다 지우고 빈 문자열
+		String memo = getPlainText(contact.getMemo());
+		if (memo.isEmpty()) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
 		// 네임에서 입력했을때 태그가 있으면 태그를 다 지우고 빈 문자열
 		String name = getPlainText(contact.getName());
 		if (name.isEmpty()) {
@@ -182,7 +198,7 @@ public class ContactController {
 		}
 
 		// 데이터 변경
-//		findItem.setMemo(contact.getMemo());
+		findItem.setMemo(memo);
 		findItem.setName(name);
 		findItem.setEmail(email);
 		findItem.setNumber(number);

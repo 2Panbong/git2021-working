@@ -2,7 +2,9 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store";
-import { addContact, ContactItem } from "./ContactSlice";
+import { requestAddContact } from "./contactSaga";
+// import { addContact, ContactItem } from "./ContactSlice";
+import { ContactItem } from "./ContactSlice";
 
 const ContactCreate = () => {
   const contactData = useSelector((state: RootState) => state.contact.data);
@@ -28,8 +30,8 @@ const ContactCreate = () => {
       createdTime: new Date().toLocaleTimeString(),
     };
 
-    dispatch(addContact(item));
-    history.push("/contact");
+    dispatch(requestAddContact(item));
+    history.push("/contacts");
   };
 
   return (
@@ -73,7 +75,7 @@ const ContactCreate = () => {
         <button
           className="btn btn-secondary float-start"
           onClick={() => {
-            history.push("/contact");
+            history.push("/contacts");
           }}
         >
           <i className="bi bi-grid-3x3-gap me-1"></i>

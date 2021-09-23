@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ContactItem {
   id: number;
-  name: string;
-  number: string;
-  email: string;
-  createdTime: string;
-  memo: string;
+  name: string | undefined;
+  number: number | string | undefined;
+  email: string | undefined;
+  createdTime: number | string;
+  memo?: string;
 }
 
 // 백엔드 연동 고려 아직 isFetched가 뭔지모름

@@ -29,7 +29,7 @@ const ContactDetail = () => {
 
   const handDeleteClick = () => {
     dispatch(removeContact(+id)); // id값만 넣어서 삭제
-    history.push("/contact"); // 목록화면으로 이동
+    history.push("/contacts"); // 목록화면으로 이동
   };
 
   return (
@@ -76,7 +76,7 @@ const ContactDetail = () => {
             <button
               className="btn btn-secondary me-1 float-start"
               onClick={() => {
-                history.push("/contact");
+                history.push("/contacts");
               }}
             >
               <i className="bi bi-grid-3x3-gap me-1"></i>
@@ -85,7 +85,7 @@ const ContactDetail = () => {
             <button
               className="btn btn-secondary me-1 float-start me-1"
               onClick={() => {
-                history.push(`/contact/detail/${+id - 1}`);
+                history.push(`/contacts/detail/${+id - 1}`);
               }}
             >
               <i className="bi bi-arrow-left-square-fill me-1"></i>이전글
@@ -93,7 +93,7 @@ const ContactDetail = () => {
             <button
               className="btn btn-secondary me-1 float-start"
               onClick={() => {
-                history.push(`/contact/detail/${+id + 1}`);
+                history.push(`/contacts/detail/${+id + 1}`);
               }}
             >
               <i className="bi bi-arrow-right-square-fill me-1"></i>다음글
@@ -103,7 +103,7 @@ const ContactDetail = () => {
             <button
               className="btn btn-primary me-1"
               onClick={() => {
-                history.push(`/contact/edit/${id}`);
+                history.push(`/contacts/edit/${id}`);
               }}
             >
               <i className="bi bi-pencil me-1" />
